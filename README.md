@@ -3,13 +3,16 @@
 
 
 Docker: Packaging your apps to deploy and run anywhere
-Docker is an open platform that enables developers and administrators to build (https://docs.docker.com/glossary/?term=image)[images], ship, and run distributed applications in a loosely isolated environment called a container. This approach enables efficient application lifecycle management between development, QA, and production environments.
+Docker is an open platform that enables developers and administrators to build [images](https://docs.docker.com/glossary/?term=image), ship, and run distributed applications in a loosely isolated environment called a [container](https://www.docker.com/what-container). This approach enables efficient application lifecycle management between development, QA, and production environments.
 
-The Docker platform uses the Docker Engine to quickly build and package apps as Docker images created using files written in the Dockerfile format that then is deployed and run in a layered container.
+The [Docker platform](https://docs.docker.com/engine/docker-overview/#the-docker-platform) uses the [Docker Engine](https://docs.docker.com/engine/docker-overview/#docker-engine) to quickly build and package apps as [Docker images](https://docs.docker.com/glossary/?term=image) created using files written in the [Dockerfile](https://docs.docker.com/glossary/?term=Dockerfile) format that then is deployed and run in a [layered container](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/#container-and-layers).
 
 You can either create your own layered images as dockerfiles or use existing ones from a registry, like Docker Hub.
 
-The relationship between Docker containers, images, and registries is an important concept when architecting and building containerized applications or microservices. This approach greatly shortens the time between development and deployment.
+The [relationship between Docker containers, images, and registries](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/container-docker-introduction/docker-containers-images-registries) is an important concept when architecting and building containerized applications or microservices. This approach greatly shortens the time between development and deployment.
+
+
+Source : [Introduction to .NET and Docker](https://docs.microsoft.com/en-us/dotnet/core/docker/intro-net-docker)
 
 
 
