@@ -17,9 +17,9 @@ https://nickjanetakis.com/blog/docker-community-edition-vs-enterprise-edition-an
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
 
 1. Update the apt package index:
-    '''
+    ```
     $ sudo apt-get update
-    '''
+    ```
 
 2. Install packages to allow apt to use a repository over HTTPS:
   $ sudo apt-get install \
