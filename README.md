@@ -93,5 +93,19 @@ for x86_64 / amd64
 ```
   $ sudo apt-get update
   $ sudo apt-get install docker-ce
+  
+  
+  
+  
+### docker saaem
+
+load balancing
+
+https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
+
+
+
+
+
   ```
   
