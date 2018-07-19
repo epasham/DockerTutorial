@@ -97,14 +97,14 @@ for x86_64 / amd64
   
   
   
-### docker saaem
+### docker swarm
 
 load balancing
 
 https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
 
-
-
+aspnet app back proxy 
+https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-2.1
 
 
   ```
