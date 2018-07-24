@@ -111,7 +111,7 @@ docker container ls
 docker container ls --all
 docker container ls -aq
 ```  
-### copy docker image
+### copy docker image to another host
 
 First save the docker image to a zip file
 
@@ -125,7 +125,18 @@ zcat <docker image name>.tar.gz | docker load
 docker export - saves a container’s running or paused instance to a file
 docker save - saves a non-running container image to a file
 
+### duplicate runnig container 
 
+
+create a new image from that container using the docker commit command
+```
+docker commit c5a24953e383 newimagename
+```
+and then run the container
+
+```
+docker run [...same arguments as the other one...] newimagename
+```
   
   
 ### Load Balancing
