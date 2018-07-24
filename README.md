@@ -122,6 +122,9 @@ Then load the exported image to docker using the below command
 ```
 zcat <docker image name>.tar.gz | docker load
 ```
+docker export - saves a container’s running or paused instance to a file
+docker save - saves a non-running container image to a file
+
 
   
   
