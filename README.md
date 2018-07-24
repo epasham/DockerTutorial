@@ -95,3 +95,38 @@ for x86_64 / amd64
   $ sudo apt-get install docker-ce
   ```
   
+
+
+## Docker Images from Docker Hub
+
+
+Download and run nginx image
+
+```
+docker run -p 8080:80 nginx
+```
+-p routes 8080 host port to 80 container port
+
+
+Download ubuntu latest version
+ ```
+ docker pull ubuntu
+ ```
+ and run it
+
+ ```
+ docker run -it ubuntu
+ ```
+
+see running containers and its status
+
+```
+sudo docker ps
+```
+
+stop running container
+
+```
+sudo docker stop <containerid>
+
+
