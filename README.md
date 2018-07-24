@@ -1,7 +1,12 @@
 # Docker Tutorial
 
-https://docs.docker.com/v17.09/engine/installation/
+### Docker Cheat Sheet
 
+https://github.com/wsargent/docker-cheat-sheet
+
+
+
+https://docs.docker.com/v17.09/engine/installation/
 
 Docker: Packaging your apps to deploy and run anywhere
 Docker is an open platform that enables developers and administrators to build [images](https://docs.docker.com/glossary/?term=image), ship, and run distributed applications in a loosely isolated environment called a [container](https://www.docker.com/what-container). This approach enables efficient application lifecycle management between development, QA, and production environments.
@@ -106,6 +111,19 @@ docker container ls
 docker container ls --all
 docker container ls -aq
 ```  
+### copy docker image
+
+First save the docker image to a zip file
+
+```
+docker save <docker image name> | gzip > <docker image name>.tar.gz
+```
+Then load the exported image to docker using the below command
+```
+zcat <docker image name>.tar.gz | docker load
+```
+
+  
   
 ### Load Balancing
 
