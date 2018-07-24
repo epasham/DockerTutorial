@@ -96,6 +96,17 @@ for x86_64 / amd64
   $ sudo apt-get install docker-ce
 
   ```
+  
+###  List Docker images and List Docker containers (running, all, all in quiet mode)
+
+```
+docker image ls
+
+docker container ls
+docker container ls --all
+docker container ls -aq
+```  
+  
 ### Load Balancing
 
 #### Docker Swarm
