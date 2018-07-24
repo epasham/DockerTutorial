@@ -146,7 +146,9 @@ docker run [...same arguments as the other one...] newimagename
 https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
 
 
-## Contenxt
+## Context
+
+### [Create your container] (https://github.com/muratcabuk/DockerTutorial/blob/master/CreateYourDockerImage.md)
 
 ### [Dockerize .NET Core Application](https://github.com/muratcabuk/DockerTutorial/blob/master/DockerizeNETCoreApp.MD)
   
