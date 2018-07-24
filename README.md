@@ -103,7 +103,9 @@ for x86_64 / amd64
 https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
 
 
-  
+## Contenxt
+
+### [Dockerize .NET Core Application](https://github.com/muratcabuk/DockerTutorial/blob/master/DockerizeNETCoreApp.MD)
   
   
   
