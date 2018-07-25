@@ -1,6 +1,12 @@
 # Docker Tutorial
 
+### Docker Cheat Sheet
 
+https://github.com/wsargent/docker-cheat-sheet
+
+
+### Source
+https://docs.docker.com/v17.09/engine/installation/
 
 Docker: Packaging your apps to deploy and run anywhere
 Docker is an open platform that enables developers and administrators to build [images](https://docs.docker.com/glossary/?term=image), ship, and run distributed applications in a loosely isolated environment called a [container](https://www.docker.com/what-container). This approach enables efficient application lifecycle management between development, QA, and production environments.
@@ -93,8 +99,10 @@ for x86_64 / amd64
 ```
   $ sudo apt-get update
   $ sudo apt-get install docker-ce
+
   ```
   
+<<<<<<< HEAD
 
 
 ## Docker Images from Docker Hub
@@ -130,3 +138,58 @@ stop running container
 sudo docker stop <containerid>
 
 
+=======
+###  List Docker images and List Docker containers (running, all, all in quiet mode)
+
+```
+docker image ls
+
+docker container ls
+docker container ls --all
+docker container ls -aq
+```  
+### copy docker image to another host
+
+First save the docker image to a zip file
+
+```
+docker save <docker image name> | gzip > <docker image name>.tar.gz
+```
+Then load the exported image to docker using the below command
+```
+zcat <docker image name>.tar.gz | docker load
+```
+docker export - saves a container’s running or paused instance to a file
+docker save - saves a non-running container image to a file
+
+### duplicate runnig container 
+
+
+create a new image from that container using the docker commit command
+```
+docker commit c5a24953e383 newimagename
+```
+and then run the container
+
+```
+docker run [...same arguments as the other one...] newimagename
+```
+  
+  
+### Load Balancing
+
+#### Docker Swarm
+
+https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
+
+
+## Context
+
+### [Create your container] (https://github.com/muratcabuk/DockerTutorial/blob/master/CreateYourDockerImage.md)
+
+### [Dockerize .NET Core Application](https://github.com/muratcabuk/DockerTutorial/blob/master/DockerizeNETCoreApp.MD)
+  
+  
+  
+  
+>>>>>>> 19e780844cb31c72eab7a9367d43144af98e6e83
