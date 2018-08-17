@@ -93,8 +93,10 @@ WORKDIR  /etc/nginx/sites-available
 
 WORKDIR /etc/systemd/
 COPY aspnetapp.service system/
+COPY nginx.service system/
 
 #bundan once nginx in de çalıştırılmış olmalı
+RUN systemctl enable nginx.service
 RUN systemctl enable aspnetapp.service
 
 
