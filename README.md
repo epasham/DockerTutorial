@@ -193,8 +193,16 @@ https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
 ### [Create your container] (https://github.com/muratcabuk/DockerTutorial/blob/master/CreateYourDockerImage.md)
 
 ### [Dockerize .NET Core Application](https://github.com/muratcabuk/DockerTutorial/blob/master/DockerizeNETCoreApp.MD)
-  
-  
-  
-  
+
 >>>>>>> 19e780844cb31c72eab7a9367d43144af98e6e83
+
+
+## Useful Commands
+
+get running container : sudo docker ps
+
+get running container detail : sudo docker exec -it (container name) ip addr
+
+login running container : sudo docker exec -it (container name) sh
+
+
