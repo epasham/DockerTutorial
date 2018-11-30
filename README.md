@@ -203,6 +203,14 @@ get running container : sudo docker ps
 
 get running container detail : sudo docker exec -it (container name) ip addr
 
+                               sudo docker exec -it <container-id> /bin/bash
+
 login running container : sudo docker exec -it (container name) sh
+
+start containers = docker start $(docker ps -a -q --filter "status=exited") (filter parameter can be changed)
+
+
+
+
 
 
