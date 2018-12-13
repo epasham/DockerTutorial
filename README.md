@@ -200,6 +200,20 @@ and then run the container
 docker run [...same arguments as the other one...] newimagename
 ```
   
+### Swarm vs Compose vs Network
+
+Bir proje için aşağıdaki işlemlerin yapılcağını varsayalım
+
+- 10 makinamızın olduğunu ve bunları yapılacak projede container larımını barındırmak için kullanacağız.
+
+- Projemiz için web, app ve db katmanlarını bu yapı üzerinde ayağa kaldıracağız.
+
+- ve bu 3 katmanı bir biriyle haberleştireceğiz.
+
+
+
+
+  
   
 ### Load Balancing
 
