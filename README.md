@@ -1,21 +1,29 @@
 # Docker Tutorial
 
-https://gokhansengun.com/docker-nedir-nasil-calisir-nerede-kullanilir/
+
+### Türkçe kaynaklar
+
+Gökhan Şengün Yazı Dizisi
+
+- https://gokhansengun.com/docker-nedir-nasil-calisir-nerede-kullanilir/
+
+- https://gokhansengun.com/docker-yeni-image-hazirlama/
+
+- https://gokhansengun.com/docker-compose-nasil-kullanilir/
+
+- http://www.netas.com.tr/blog/docker-bolum-1-nedir-nasil-calisir-nerede-kullanilir/
+
 
 https://www.xenonstack.com/blog/devops/docker-application-architecture-hub-images/amp/
-
 
 https://docs.docker.com/v17.09/engine/userguide/storagedriver/imagesandcontainers/#the-copy-on-write-cow-strategy
 
 https://stackoverflow.com/questions/19234831/where-are-docker-images-stored-on-the-host-machine
 
-
 https://docs.docker.com/storage/#more-details-about-mount-types
 
 https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-an-introduction-to-common-components#top
 
-
-http://www.netas.com.tr/blog/docker-bolum-1-nedir-nasil-calisir-nerede-kullanilir/
 
 ### Docker Cheat Sheet
 
