@@ -221,10 +221,11 @@ Containerların organizasyonu ile ilgilenir. hangi makinada (host da) hangi cont
 ##### Compose
 farklı hostlarda bulunan containerların grup olarak çalışmasını sağlar. farklı vontainer ların bir servisi sunmasını sağlar.
 
+[Türkçe link](http://devnot.com/2017/docker-compose/), [Türkçe link](http://ilkinulas.github.io/development/test/junit/docker/2018/03/11/docker-ve-docker-compose.html)
+
 
 ##### Network
 cotainerların iletişimini sağlar.
-
 
   
   
