@@ -142,6 +142,7 @@ docker run -p 8080:80 nginx
 
 
 Download ubuntu latest version
+ 
  ```
  docker pull ubuntu
  ```
@@ -161,7 +162,7 @@ stop running container
 
 ```
 sudo docker stop <containerid>
-
+```
 
 =======
 ###  List Docker images and List Docker containers (running, all, all in quiet mode)
@@ -173,6 +174,7 @@ docker container ls
 docker container ls --all
 docker container ls -aq
 ```  
+
 ### copy docker image to another host
 
 First save the docker image to a zip file
@@ -200,17 +202,28 @@ and then run the container
 docker run [...same arguments as the other one...] newimagename
 ```
   
+
 ### Swarm vs Compose vs Network
 
 Bir proje için aşağıdaki işlemlerin yapılcağını varsayalım
 
-- 10 makinamızın olduğunu ve bunları yapılacak projede container larımını barındırmak için kullanacağız.
+- 10 makinamızın olduğunu ve bunları yapılacak projede container larımını barındırmak için kullanacağız. (Swarm)
 
-- Projemiz için web, app ve db katmanlarını bu yapı üzerinde ayağa kaldıracağız.
+- Projemiz için web, app ve db katmanlarını bu yapı üzerinde ayağa kaldıracağız. (Compose)
 
-- ve bu 3 katmanı bir biriyle haberleştireceğiz.
+- ve bu 3 katmanı bir biriyle haberleştireceğiz. (Network)
 
 
+##### Swarm
+Containerların organizasyonu ile ilgilenir. hangi makinada (host da) hangi container olacak hangi container ne iş yapacak. ayrıca bu node ları cluster olarak aylarlabilir. Orchestration san farklı bir olaydır. 
+
+
+##### Compose
+farklı hostlarda bulunan containerların grup olarak çalışmasını sağlar. farklı vontainer ların bir servisi sunmasını sağlar.
+
+
+##### Network
+cotainerların iletişimini sağlar.
 
 
   
