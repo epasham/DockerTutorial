@@ -1,5 +1,30 @@
 # Docker Tutorial
 
+
+### Türkçe kaynaklar
+
+Gökhan Şengün Yazı Dizisi
+
+- https://gokhansengun.com/docker-nedir-nasil-calisir-nerede-kullanilir/
+
+- https://gokhansengun.com/docker-yeni-image-hazirlama/
+
+- https://gokhansengun.com/docker-compose-nasil-kullanilir/
+
+- http://www.netas.com.tr/blog/docker-bolum-1-nedir-nasil-calisir-nerede-kullanilir/
+
+
+https://www.xenonstack.com/blog/devops/docker-application-architecture-hub-images/amp/
+
+https://docs.docker.com/v17.09/engine/userguide/storagedriver/imagesandcontainers/#the-copy-on-write-cow-strategy
+
+https://stackoverflow.com/questions/19234831/where-are-docker-images-stored-on-the-host-machine
+
+https://docs.docker.com/storage/#more-details-about-mount-types
+
+https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-an-introduction-to-common-components#top
+
+
 ### Docker Cheat Sheet
 
 https://github.com/wsargent/docker-cheat-sheet
@@ -117,6 +142,7 @@ docker run -p 8080:80 nginx
 
 
 Download ubuntu latest version
+ 
  ```
  docker pull ubuntu
  ```
@@ -136,7 +162,7 @@ stop running container
 
 ```
 sudo docker stop <containerid>
-
+```
 
 =======
 ###  List Docker images and List Docker containers (running, all, all in quiet mode)
@@ -148,6 +174,7 @@ docker container ls
 docker container ls --all
 docker container ls -aq
 ```  
+
 ### copy docker image to another host
 
 First save the docker image to a zip file
@@ -175,6 +202,32 @@ and then run the container
 docker run [...same arguments as the other one...] newimagename
 ```
   
+
+### Swarm vs Compose vs Network
+
+Bir proje için aşağıdaki işlemlerin yapılcağını varsayalım
+
+- 10 makinamızın olduğunu ve bunları yapılacak projede container larımını barındırmak için kullanacağız. (Swarm)
+
+- Projemiz için web, app ve db katmanlarını bu yapı üzerinde ayağa kaldıracağız. (Compose)
+
+- ve bu 3 katmanı bir biriyle haberleştireceğiz. (Network)
+
+
+##### Swarm
+Containerların organizasyonu ile ilgilenir. hangi makinada (host da) hangi container olacak hangi container ne iş yapacak. ayrıca bu node ları cluster olarak aylarlabilir. Orchestration san farklı bir olaydır. 
+
+
+##### Compose
+farklı hostlarda bulunan containerların grup olarak çalışmasını sağlar. farklı vontainer ların bir servisi sunmasını sağlar.
+
+[Türkçe link](http://devnot.com/2017/docker-compose/), [Türkçe link](http://ilkinulas.github.io/development/test/junit/docker/2018/03/11/docker-ve-docker-compose.html)
+
+
+##### Network
+cotainerların iletişimini sağlar.
+
+  
   
 ### Load Balancing
 
@@ -188,8 +241,24 @@ https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
 ### [Create your container] (https://github.com/muratcabuk/DockerTutorial/blob/master/CreateYourDockerImage.md)
 
 ### [Dockerize .NET Core Application](https://github.com/muratcabuk/DockerTutorial/blob/master/DockerizeNETCoreApp.MD)
-  
-  
-  
-  
+
 >>>>>>> 19e780844cb31c72eab7a9367d43144af98e6e83
+
+
+## Useful Commands
+
+get running container : sudo docker ps
+
+get running container detail : sudo docker exec -it (container name) ip addr
+
+                               sudo docker exec -it <container-id> /bin/bash
+
+login running container : sudo docker exec -it (container name) sh
+
+start containers = docker start $(docker ps -a -q --filter "status=exited") (filter parameter can be changed)
+
+
+
+
+
+
