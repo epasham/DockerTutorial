@@ -238,7 +238,7 @@ https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
 
 ## Context
 
-### [Create your container] (https://github.com/muratcabuk/DockerTutorial/blob/master/CreateYourDockerImage.md)
+### [Create your container](https://github.com/muratcabuk/DockerTutorial/blob/master/CreateYourDockerImage.md)
 
 ### [Dockerize .NET Core Application](https://github.com/muratcabuk/DockerTutorial/blob/master/DockerizeNETCoreApp.MD)
 
@@ -247,18 +247,37 @@ https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
 
 ## Useful Commands
 
-get running container : sudo docker ps
+get running container : 
 
-get running container detail : sudo docker exec -it (container name) ip addr
+```
+sudo docker ps
+```
+get running container detail : 
 
-                               sudo docker exec -it <container-id> /bin/bash
+```
+sudo docker exec -it (container name) ip addr
 
-login running container : sudo docker exec -it (container name) sh
-
-start containers = docker start $(docker ps -a -q --filter "status=exited") (filter parameter can be changed)
-
+sudo docker exec -it <container-id> /bin/bash
+```
 
 
+login running container : 
+```
+sudo docker exec -it (container name) sh
+```
+
+start containers
+```
+docker start $(docker ps -a -q --filter "status=exited") (filter parameter can be changed)
+```
+stop all containers
+```
+docker stop $(docker ps -a -q)
+```
+remove all containers 
+```
+docker rm $(docker ps -a -q)
+```
 
 
 
