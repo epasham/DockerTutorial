@@ -445,6 +445,300 @@ $ docker kill --signal=HUP my_container
 $ docker kill --signal=1 my_container
 ```
 
+13. doscker export/import/load/save
+
+
+- save works with Docker images. It saves everything needed to build a container from scratch. Use this command if you want to share an image with others.
+- load works with Docker images. Use this command if you want to run an image exported with save. Unlike pull, which requires connecting to a Docker registry, load can import from anywhere (e.g. a file system, URLs).
+- export works with Docker containers, and it exports a snapshot of the container’s file system. Use this command if you want to share or back up the result of building an image.
+- import works with the file system of an exported container, and it imports it as a Docker image. Use this command if you have an exported file system you want to explore or use as a layer for a new image.
+
+https://pspdfkit.com/blog/2019/docker-import-export-vs-load-save/
+
+14. docker logs
+
+Fetch the logs of a container
+
+Options
+
+Name, shorthand	Default	Description
+```
+--details		Show extra details provided to logs
+--follow , -f		Follow log output
+--since		Show logs since timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)
+--tail	all	Number of lines to show from the end of the logs
+--timestamps , -t		Show timestamps
+--until		API 1.35+
+Show logs before a timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)
+```
+
+
+```shell
+$ docker run --name test -d busybox sh -c "while true; do $(echo date); sleep 1; done"
+$ date
+Tue 14 Nov 2017 16:40:00 CET
+$ docker logs -f --until=2s
+Tue 14 Nov 2017 16:40:00 CET
+Tue 14 Nov 2017 16:40:01 CET
+Tue 14 Nov 2017 16:40:02 CET
+```
+
+15. docker network
+
+bu kısım zaetn detaylı bir şekilde ayrı bir md soyaında işleniyor.
+
+[network](3_networ.md)
+
+https://docs.docker.com/engine/reference/commandline/network/
+
+16. docker plugin
+
+Manage plugins.
+
+Child commands
+
+```
+Command	              Description
+docker plugin create	Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory.
+docker plugin disable	Disable a plugin
+docker plugin enable	Enable a plugin
+docker plugin inspect	Display detailed information on one or more plugins
+docker plugin install	Install a plugin
+docker plugin ls	    List plugins
+docker plugin push	  Push a plugin to a registry
+docker plugin rm	    Remove one or more plugins
+docker plugin set	    Change settings for a plugin
+docker plugin upgrade	Upgrade an existing plugin
+
+```
+
+17. docker port
+
+List port mappings or a specific mapping for the container
+
+
+You can find out all the ports mapped by not specifying a PRIVATE_PORT, or just a specific mapping:
+
+```shell
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                            NAMES
+b650456536c7        busybox:latest      top                 54 minutes ago      Up 54 minutes       0.0.0.0:1234->9876/tcp, 0.0.0.0:4321->7890/tcp   test
+$ docker port test
+7890/tcp -> 0.0.0.0:4321
+9876/tcp -> 0.0.0.0:1234
+$ docker port test 7890/tcp
+0.0.0.0:4321
+$ docker port test 7890/udp
+2014/06/24 11:53:36 Error: No public port '7890/udp' published for test
+$ docker port test 7890
+0.0.0.0:4321
+
+```
+
+18. docker ps
+
+List containers
+
+Options
+```
+Name, shorthand	Default	Description
+
+--all , -a		Show all containers (default shows just running)
+--filter , -f		Filter output based on conditions provided
+--format		Pretty-print containers using a Go template
+--last , -n	-1	Show n last created containers (includes all states)
+--latest , -l		Show the latest created container (includes all states)
+--no-trunc		Don’t truncate output
+--quiet , -q		Only display numeric IDs
+--size , -s		Display total file sizes
+```
+
+19. docker pull
+
+Pull an image or a repository from a registry
+
+```shell
+docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+```
+docker hub dışında başka bir registery den almak için
+
+```shell
+docker pull myregistry.local:5000/testing/test-image
+```
+
+20. docker rename
+
+```shell
+docker rename my_container my_new_container
+```
+21. docker rm
+
+remove docker container
+
+```
+docker rm $(docker ps -a -q)
+```
+
+
+Options
+```
+Name        shorthand	Default	Description
+--force ,   -f		    Force the removal of a running container (uses SIGKILL)
+--link ,    -l		    Remove the specified link
+--volumes , -v        Remove anonymous volumes associated with the container
+```
+
+22. docker rmi
+
+Remove one or more images
+
+```
+docker rmi [OPTIONS] IMAGE [IMAGE...]
+```
+
+23. docker secret
+
+Manage Docker secrets
+
+bu bölümle alakalı daha dtaylı bir döküman hazırlandı
+
+https://docs.docker.com/engine/reference/commandline/secret/
+
+[Detaylı Döküman](5_dockersecret.md)
+
+24. docker stack
+
+aslında swarm ortamının configurasyon üzerinden yönetlimesidir.
+
+https://medium.com/devopsturkiye/docker-container-ve-swarm-mode-f6975717647e
+
+https://docs.docker.com/engine/reference/commandline/stack/
+
+25. docker system
+
+Manage Docker
+
+Child commands
+```
+Command	Description
+docker system df	Show docker disk usage
+docker system events	Get real time events from the server
+docker system info	Display system-wide information
+docker system prune	Remove unused data
+```
+
+```
+$ docker system df
+
+TYPE                TOTAL               ACTIVE              SIZE                RECLAIMABLE
+Images              5                   2                   16.43 MB            11.63 MB (70%)
+Containers          2                   0                   212 B               212 B (100%)
+Local Volumes       2                   1                   36 B                0 B (0%)
+
+```
+26. docker tag
+
+Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+
+Examples
+
+Tag an image referenced by ID
+
+To tag a local image with ID “0e5574283393” into the “fedora” repository with “version1.0”:
+```
+$ docker tag 0e5574283393 fedora/httpd:version1.0
+```
+
+Tag an image referenced by Name
+
+To tag a local image with name “httpd” into the “fedora” repository with “version1.0”:
+```
+$ docker tag httpd fedora/httpd:version1.0
+```
+
+Note that since the tag name is not specified, the alias is created for an existing local version httpd:latest.
+
+Tag an image referenced by Name and Tag
+
+To tag a local image with name “httpd” and tag “test” into the “fedora” repository with “version1.0.test”:
+```
+$ docker tag httpd:test fedora/httpd:version1.0.test
+****
+```
+Tag an image for a private repository
+To push an image to a private registry and not the central Docker registry you must tag it with the registry hostname and port (if needed).
+```
+$ docker tag 0e5574283393 myregistryhost:5000/fedora/httpd:version1.0
+```
+27. docker top
+
+Display the running processes of a container
+
+28. docker trust
+
+docker contex in uzak sunuculara giderken/gelirken güvenli olarka trasfer edilmesini sağlar. context imzalanır ve karşı taraf açar.
+
+29. docker update
+
+Update configuration of one or more containers
+
+Warning: The docker update and docker container update commands are not supported for Windows containers.
+
+Update a container’s cpu-shares
+
+To limit a container’s cpu-shares to 512, first identify the container name or ID. You can use docker ps to find these values. You can also use the ID returned from the docker run command. Then, do the following:
+
+```
+$ docker update --cpu-shares 512 abebf7571666
+```
+Update a container with cpu-shares and memory
+To update multiple resource configurations for multiple containers:
+
+```
+$ docker update --cpu-shares 512 -m 300M abebf7571666 hopeful_morse
+```
+Update a container’s kernel memory constraints
+You can update a container’s kernel memory limit using the --kernel-memory option. On kernel version older than 4.6, this option can be updated on a running container only if the container was started with --kernel-memory. If the container was started without --kernel-memory you need to stop the container before updating kernel memory.
+
+For example, if you started a container with this command:
+
+```
+$ docker run -dit --name test --kernel-memory 50M ubuntu bash
+```
+30. docker wait
+
+Block until one or more containers stop, then print their exit codes
+
+Examples
+
+Start a container in the background.
+```
+$ docker run -dit --name=my_container ubuntu bash
+```
+Run docker wait, which should block until the container exits.
+
+```
+$ docker wait my_container
+```
+
+In another terminal, stop the first container. The docker wait command above returns the exit code.
+
+```
+$ docker stop my_container
+```
+
+This is the same docker wait command from above, but it now exits, returning 0.
+
+```
+$ docker wait my_container
+0
+```
+
+
+
+
+
 
 ### __Docker Compose File__
 
