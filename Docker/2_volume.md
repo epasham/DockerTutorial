@@ -13,7 +13,7 @@ Ceph ile alakalı detaylı bilgi için
 https://github.com/muratcabuk/Notes/tree/master/StorageSystems
 
 
-
+Mount vs Bind
 
 
 
