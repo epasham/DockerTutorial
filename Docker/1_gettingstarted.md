@@ -1,5 +1,11 @@
 ###  __Hello-World__
 
+
+kesin bakılmalı
+https://www.bgasecurity.com/2018/04/dockerin-calistigi-host-uzerinde-yapilmasi-gereken-sikilastirmalar/
+
+
+
 temel olarak ya dockerfile yazıp kendi image ımızı oluşturuz ve bunu publi yada private bir register i ye koyuyoruz her defaısnda build yapmamak için. daha sonra docker komutlarıyla bunu çalıştırıyoruz.
 
 eğer birden fazla docker ile birilikte bir sistem oluşturuyorsak (web, database, storage, vb) ozaman dockercompose file yazıyoruz yaml tabanlı.  docker-compose cli ile bütün sistemi toplu halde yöntiyoruz.
