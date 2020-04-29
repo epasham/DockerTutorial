@@ -1,0 +1,3 @@
+bu dosyayı volume a kopyalayacağız.
+diğer proje bu dosyayı okuyup ekrana yazacak.
+yani iki projede ortak volme a yazıp okumuş olacak

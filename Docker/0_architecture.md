@@ -1,4 +1,16 @@
-1. CONTEXT
+1. PLUGINS
+
+   - https://docs.docker.com/engine/extend/
+   - https://docs.docker.com/engine/extend/plugins_authorization/
+   - https://docs.docker.com/engine/extend/legacy_plugins/
+   - https://docs.docker.com/engine/extend/plugins_network/
+   - https://docs.docker.com/engine/extend/plugins_volume/
+   - https://docs.docker.com/engine/extend/config/
+   - https://docs.docker.com/engine/extend/plugin_api/
+
+
+
+2. CONTEXT
 
 https://docs.docker.com/engine/context/working-with-contexts/
 
