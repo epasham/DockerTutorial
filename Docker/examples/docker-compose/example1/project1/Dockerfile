@@ -1,11 +1,3 @@
-
-
-# $UBUNTU_VERSION Dockerfile build edilirken girilecek. boş geçilirse default değer yani 16.04 geçilmiş olacak.
-# Yukarıdaki ARG veriesi alında okunmuş oluyor
-FROM ubuntu:18.08
-
-
-
 # build aşaması için ARG kulanmak, build bitti runtime geçtiğimizde ise ENV çalışıyor.
 # Alttaki örneklerde bu şekilde
 
@@ -14,6 +6,12 @@ FROM ubuntu:18.08
 #So the scope of the ARG instruction is limited to build stage.
 ARG CHECK_VERSION=Latest
 ARG UBUNTU_VERSION=16.04
+
+# $UBUNTU_VERSION Dockerfile build edilirken girilecek. boş geçilirse default değer yani 16.04 geçilmiş olacak.
+# Yukarıdaki ARG veriesi alında okunmuş oluyor
+FROM ubuntu:$UBUNTU_VERSION
+
+
 
 
 # ENV instruction sets the environment variable and this sets the environment for the subsequent build instructions.
