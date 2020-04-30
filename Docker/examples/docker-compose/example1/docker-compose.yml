@@ -69,7 +69,7 @@ services:
             - ./project1/p1.env
 
         environment:
-            - {"TEST_ENV": "test amaçlı konuldu"}
+            TEST_ENV: test amaçlı konuldu
 
         expose: 
             - '5000'
@@ -124,14 +124,16 @@ services:
             args:
                 arg1: test amaçlı eklendi
 
-            network: mybridge # bu daha önce oluşturulmuş olmalı
-            depends_on: project1
+        depends_on: project1
         healthcheck:
             test: ["CMD", "ping", "project1"]
             interval: 4s
             timeout: 10s
             retries: 3
             start_period: 4s
+        networks: # build aşamasında da belirtmiştik orada belirttiğimiz build aşamında  eğer ihtiyaç olursa onun için kullanılıyor. buradaki servis runtime da iken lazım olacak
+            - mybridge
+
 
     redis:
         image: redis:latest
