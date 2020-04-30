@@ -69,7 +69,7 @@ services:
             - ./project1/p1.env
 
         environment:
-            - TEST_ENV: "test amaçlı konuldu"
+            - {"TEST_ENV": "test amaçlı konuldu"}
 
         expose: 
             - '5000'
