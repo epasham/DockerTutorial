@@ -12,25 +12,30 @@ services:
         container_name: project1 # otomaitk olarak ulaşmasın kendimiz izim vermiş olduk
         depends_on:
             - redis
-        deploy:
-            labels:
-                maintainer: murat cabuk
-            mode: replicated # diğer seçenek global buda swarm node larının hepsine kopyalanması anlamına gelir
-            replicas: 1
-            resources:
-                limits:
-                    cpus: "0.10"
-                    memory: 50M
-                reservations:
-                    cpus: "0.05"
-                    memory: 20M
-            restart_policy: # https://docs.docker.com/compose/compose-file/#restart_policy
-                condition: on-failure
-                delay: 5s
-                max_attempts: 3
-                window: 120s
-            placement: # 3.8 le birlikte max_replicas_per_node deploy placement altına yazılıyor
-                max_replicas_per_node: 1
+
+
+                        # bütün bu deploy kısmı swarm için geçerli
+        # deploy:
+        #     labels:
+        #         maintainer: murat cabuk
+        #     mode: replicated # diğer seçenek global buda swarm node larının hepsine kopyalanması anlamına gelir
+        #     replicas: 1
+        #     resources:
+        #         limits:
+        #             cpus: "0.10"
+        #             memory: 50M
+        #         reservations:
+        #             cpus: "0.05"
+        #             memory: 20M
+        #     restart_policy: # https://docs.docker.com/compose/compose-file/#restart_policy
+        #         condition: on-failure
+        #         delay: 5s
+        #         max_attempts: 3
+        #         window: 120s
+        #     placement: # 3.8 le birlikte max_replicas_per_node deploy placement altına yazılıyor
+        #         max_replicas_per_node: 1
+
+
 
             # rollback_config:
             #     parallelism: The number of containers to rollback at a time. If set to 0, all containers rollback simultaneously.
