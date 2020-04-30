@@ -14,9 +14,6 @@ FROM ubuntu:$UBUNTU_VERSION
 
 
 
-
-
-
 # ENV instruction sets the environment variable and this sets the environment for the subsequent build instructions.
 # burası klasik anlmada asp.net de kod yazarken envrionment verilerini okurken kullandığımız bölüm.
 # asp.net core dosyamızda PORT adında bir environment verisini okuyorsak alttaki Port verisi alınmış olacak.
@@ -59,7 +56,7 @@ WORKDIR /home/project
 
 # WORKDIR temp olara ayarlandığı için orada gidecek. 
 # ancak biz isteseydik örneğin /temp/copyfile.txt gibi açıkçada belirtebilirdik.
-RUN copyfile.txt copyfile.txt
+ADD copyfile.txt copyfile.txt
 
 ENV VOLUME_PATH_ENV=/home/temp
 
@@ -68,7 +65,7 @@ ENV VOLUME_PATH_ENV=/home/temp
 VOLUME $VOLUME_PATH:/home/myvolume
 
 # Aynı dosyayı bu sefer diğer containerla paylaşmak için volume a koyuyoruz.
-RUN copyfile.txt /home/myvolume/copyfile.txt
+ADD copyfile.txt /home/myvolume/copyfile.txt
 
 
 # env dosyasında ataması yapılıyor aslında ancak hiçbirşey atanmadıysa default değer atamk için myvolume2 yazıldı
