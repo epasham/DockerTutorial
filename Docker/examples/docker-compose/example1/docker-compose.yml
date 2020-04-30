@@ -4,7 +4,7 @@ services:
     project1:
         build: 
             context: ./project1
-            dockerfile: ./project1/Dockerfile
+            dockerfile: Dockerfile
             args:
                 UBUNTU_VERSION: 18.04
             network: mybridge # bu daha önce oluşturulmuş olmalı. daha detaylı network tanımı için : https://docs.docker.com/compose/compose-file/#network-configuration-reference
@@ -120,7 +120,7 @@ services:
     project2:
         build:
             context: ./project2
-            dockerfile: ./project2/Dockerfile
+            dockerfile: Dockerfile
             args:
                 arg1: test amaçlı eklendi
 
