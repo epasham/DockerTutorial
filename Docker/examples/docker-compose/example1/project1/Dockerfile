@@ -4,12 +4,12 @@
 # The scope of this ARG instruction comes into picture only after it is declared in the Dockerfile. 
 # it goes out of scope once the build is complete. 
 #So the scope of the ARG instruction is limited to build stage.
-ARG CHECK_VERSION=Latest
-ARG UBUNTU_VERSION=16.04
+# ARG CHECK_VERSION=Latest
+# ARG UBUNTU_VERSION=16.04
 
 # $UBUNTU_VERSION Dockerfile build edilirken girilecek. boş geçilirse default değer yani 16.04 geçilmiş olacak.
 # Yukarıdaki ARG veriesi alında okunmuş oluyor
-FROM ubuntu:$UBUNTU_VERSION
+FROM ubuntu:18.04
 
 
 
