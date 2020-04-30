@@ -134,8 +134,7 @@ services:
         networks: # burası en üstteki serviteki gibi build içinde dğil dikkat build dışıdan kullanımı bu şekilde networkun
             - mybridge
         container_name: redis
-        environment:
-            - PASSWORD: birsey
+
 
         #zaten dockerfile içinde yapımıştı
         #healthcheck:
