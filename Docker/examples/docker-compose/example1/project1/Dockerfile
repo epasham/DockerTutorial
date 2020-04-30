@@ -56,7 +56,7 @@ WORKDIR /home/project
 
 # WORKDIR temp olara ayarlandığı için orada gidecek. 
 # ancak biz isteseydik örneğin /temp/copyfile.txt gibi açıkçada belirtebilirdik.
-ADD copyfile.txt copyfile.txt
+COPY copyfile.txt copyfile.txt
 
 ENV VOLUME_PATH_ENV=/home/temp
 
@@ -65,7 +65,7 @@ ENV VOLUME_PATH_ENV=/home/temp
 VOLUME $VOLUME_PATH:/home/myvolume
 
 # Aynı dosyayı bu sefer diğer containerla paylaşmak için volume a koyuyoruz.
-ADD copyfile.txt /home/myvolume/copyfile.txt
+COPY copyfile.txt /home/myvolume/copyfile.txt
 
 
 # env dosyasında ataması yapılıyor aslında ancak hiçbirşey atanmadıysa default değer atamk için myvolume2 yazıldı
