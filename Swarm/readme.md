@@ -1,5 +1,17 @@
 ﻿Docker-machine  i atlama
 
+
+docker-cli da swarm ile alakalı bölümleri atlama
+
+https://docs.docker.com/engine/reference/commandline/service/
+https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-placement-preferences---placement-pref (tüm maddeleri incelemek lazm)
+
+https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints---constraint
+
+
+
+https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/#replicated-and-global-services
+
 https://engineering.teknasyon.com/docker-nas%C4%B1l-g%C3%BCzel-nas%C4%B1l-g%C3%BCzel-docker-dockerfile-docker-compose-ve-docker-swarm-%C3%BCzerine-c3fdfa28583b
 
 

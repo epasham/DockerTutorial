@@ -18,7 +18,7 @@ ENTRYPOINT ["/bin/bash"]
 #                bu süre zarfında healthcheck başlamazsa hata olarka kabül edilmez.
 # retries : kaç kere deneyecek
 # https://www.alibabacloud.com/help/doc-detail/58588.htm
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD cat /home/myvolume/copyfile.txt
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD ping project1
 
 
 # ekrana yazar yazmaz kapanacak demektir.

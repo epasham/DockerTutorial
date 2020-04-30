@@ -1,4 +1,6 @@
 
+https://docs.docker.com/compose/compose-file/
+
 ### installation
 
 
@@ -111,6 +113,33 @@ services:
          - "5001:80"
          - "5858:5858"
 ```
+
+
+
+### docker-compose.yml file organization
+
+- https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/
+
+Bir docker-compose.yml dosyası 4 bölümden oluşmaktadır.
+
+1. Version: yaml dosyasının syntax i için gerekli ola versyon nmrası. compose geliştikçe yeni keywordler kelendiği için gerekli.
+2. Services: yeönetilmek istenen containerın bulunduğu bölüm.
+3. Networks: uyugulama için gerekli olan network konfigurasyonu, default network ayarları buradan değiştirilebilir.
+4. Volumes: gerekli olan volume/storage ayarları.
+
+services bölümünde ençok kullanılan direktifler.
+
+- image:	Sets the image that will be used to build the container. Using this directive assumes that the specified image already exists either on the host or on Docker Hub.
+- build:	This directive can be used instead of image. Specifies the location of the Dockerfile that will be used to build this container.
+- db:	In the case of the example Dockercompose file, db is a variable for the container you are about to define.
+- restart:	Tells the container to restart if the system restarts.
+- volumes:	Mounts a linked path on the host machine that can be used by the container
+- environment:	Define environment variables to be passed in to the Docker run command.
+- depends_on:	Sets a service as a dependency for the current block-defined container
+- port:	Maps a port from the container to the host in the following manner: host:container
+- links:	Link this service to any other services in the Docker Compose file by specifying their names here.
+
+daha birçok keyword için : https://docs.docker.com/compose/compose-file/
 
 
 ### Kaynaklar

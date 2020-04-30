@@ -1,0 +1,157 @@
+version: "3.0"
+
+services:
+    project1:
+        build: Dockerfile
+            context: ./project1
+            args:
+                UBUNTU_VERSION: 18.04
+            network: mybridge # bu daha önce oluşturulmuş olmalı. daha detaylı network tanımı için : https://docs.docker.com/compose/compose-file/#network-configuration-reference
+            target: test #prod da olabilirdi stage yönetimi için gerekli
+        container_name: project1 # otomaitk olarak ulaşmasın kendimiz izim vermiş olduk
+        depends_on:
+            - redis
+        deploy:
+            labels:
+                maintainer: murat cabuk
+            mode: replicated # diğer seçenek global buda swarm node larının hepsine kopyalanması anlamına gelir
+            replicas: 1
+            max_replicas_per_node: 1
+            resources:
+                limits:
+                    cpus: "0.10"
+                    memory: 50M
+                reservations:
+                    cpus: "0.05"
+                    memory: 20M
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+                windows: 120s
+
+            # rollback_config:
+            #     parallelism: The number of containers to rollback at a time. If set to 0, all containers rollback simultaneously.
+            #     delay: The time to wait between each container group’s rollback (default 0s).
+            #     failure_action: What to do if a rollback fails. One of continue or pause (default pause)
+            #     monitor: Duration after each task update to monitor for failure (ns|us|ms|s|m|h) (default 0s).
+            #     max_failure_ratio: Failure rate to tolerate during a rollback (default 0).
+            #     order: Order of operations during rollbacks. One of stop-first (old task is stopped before starting new one), or start-first (new task is started first, and the running tasks briefly overlap) (default stop-first). 
+           
+            # update_config:
+                # parallelism: The number of containers to update at a time.
+                # delay: The time to wait between updating a group of containers.
+                # failure_action: What to do if an update fails. One of continue, rollback, or pause (default: pause).
+                # monitor: Duration after each task update to monitor for failure (ns|us|ms|s|m|h) (default 0s).
+                # max_failure_ratio: Failure rate to tolerate during an update.
+                # order: Order of operations during updates. One of stop-first (old task is stopped before starting new one), or start-first (new task is started first, and the running tasks briefly overlap) (default stop-first) Note: Only supported for v3.4 and higher.
+            
+            # placement: # swarm çin gerekli alanlar aslında
+            #     constraints: # https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints---constraint
+            #         - "node.role=worker" # diğer seçenek manager
+            #         - "node.hostname=project1"
+            #     preferences: # https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-placement-preferences---placement-pref
+            #         - spread: node.labels.zone
+        
+        # devices: # usb gibi deviceları bağlamak için kulanılır. The devices option is ignored when deploying a stack in swarm mode
+        #     - "/dev/ttyUSB0:/dev/ttyUSB0"
+        
+        # dns: 8.8.8.8
+
+        # entrypoint: /code/entrypoint.sh #override the default entrypoint script yazmanın aslın da enrypoint i bi executable bırakmaktan farklı yok ancak container ın açılışında yapılcak işlerin tammlanması için mantıklı olabilir.
+
+        env_file:
+            - ./project1/p1.env
+
+        environment:
+            - TEST_ENV: test amaçlı konuldu
+
+        expose: 
+            - '5000'
+
+        # extra_hosts: # Add hostname mappings. Use the same values as the docker client --add-host parameter.  
+        #     - "somehost:162.242.195.82"
+        #     - "otherhost:50.31.209.229"
+        
+        # external_links: # Link to containers started outside this docker-compose.yml or even outside of Compose, especially for containers that provide shared or common services.
+        #     - postgres_db1:postgres # external_links follow semantics similar to the legacy option links when specifying both the container name and the link alias (CONTAINER:ALIAS).
+        
+        # command: ["bundle", "exec", "thin", "-p", "3000"] # containerın CMD komutunuezmek için kullanılır.
+        # dns: 8.8.8.8 # custom dns 
+
+        pid: "host" # Sets the PID mode to the host PID mode. This turns on sharing between container and the host operating system the PID address space.
+
+        ports: # Port mapping is incompatible with network_mode: host
+            - "3000-5000"
+            # - {target: 80, published: 8080, protocol: tcp, mode: host}    # long version
+        
+        # restart: "no" | "always" | "on-failure" | "unless-stopped" #The restart option is ignored when deploying a stack in swarm mode.
+
+        # secrets: # https://docs.docker.com/compose/compose-file/#secrets bu bölüm likten baılabilir.advence bir konu olduğu için ileride diğer örnkerlerde işlenecek
+        
+        stop_grace_period: 10s # Specify how long to wait when attempting to stop a container if it doesn’t handle SIGTERM (or whatever stop signal has been specified with stop_signal), before sending SIGKILL.
+
+        stop_signal: SIGTERM #Sets an alternative signal to stop the container. By default stop uses SIGTERM. Setting an alternative signal using stop_signal causes stop to send that signal instead.
+
+        # tmpsf: # Mount a temporary file system inside the container. Can be a single value or a list.
+        #     - /tmp
+        #     - /run
+
+        # ulimits: # http://www.belgeler.org/bashref/bashref_bash.builtins-ulimit.html, http://yfpayalan.blogspot.com/2013/03/ulimit-komutu.html
+
+        # userns_mode: "host" # kullanıcı veya group a göre dockerc container ı izole etmek için kullanılır. Disables the user namespace for this service, if Docker daemon is configured with user namespaces. See dockerd for more information. https://docs.docker.com/engine/security/userns-remap/
+
+        volumes: # daha detaylı volume tanımlamak için https://docs.docker.com/compose/compose-file/#volume-configuration-reference
+            - type: volume
+              source: mydata
+              target: /home/data
+              volume: 
+                nocopy: true
+        networks: # build aşamasında da belirtmiştik orada belirttiğimiz build aşamında  eğer ihtiyaç olursa onun için kullanılıyor. buradaki servis runtime da iken lazım olacak
+            - mybridge
+
+
+
+    project2:
+        build: Dockerfile
+            context: ./project2
+            args:
+                arg1: test amaçlı eklendi
+
+            network: mybridge # bu daha önce oluşturulmuş olmalı
+            depends_on: project1
+        healthcheck:
+            test: ["CMD", "ping", "project1"]
+            interval: 4s
+            timeout: 10s
+            retries: 3
+            start_period: 4s
+
+    redis:
+        image: redis:latest
+        networks: # burası en üstteki serviteki gibi build içinde dğil dikkat build dışıdan kullanımı bu şekilde networkun
+            - mybridge
+        container_name: redis
+        environment:
+            - PASSWORD: birsey
+
+        #zaten dockerfile içinde yapımıştı
+        #healthcheck:
+        #    test: ["CMD", "ping", "project1"]
+        #    interval: 2s
+        #    timeout: 30s
+        #    retries: 3s
+        #    start_period: 10s
+
+networks:
+    mybridge:
+        driver: bridge
+        internal: true
+    # mybridge2:
+    #     external:
+    #         name: mybridge2 # daha önce oluşturulmuşsa network external name de onun adıyazılır.
+
+
+
+volumes: # servislerin içinde volum tipine oluşturduklarıız için kullanılır.
+    mydata: # project1 de test amaçlı oluşturmuştum
