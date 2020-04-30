@@ -17,7 +17,6 @@ services:
                 maintainer: murat cabuk
             mode: replicated # diğer seçenek global buda swarm node larının hepsine kopyalanması anlamına gelir
             replicas: 1
-            max_replicas_per_node: 1 # https://docs.docker.com/compose/compose-file/#max_replicas_per_node
             resources:
                 limits:
                     cpus: "0.10"
@@ -30,6 +29,8 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 120s
+            placement: # 3.8 le birlikte max_replicas_per_node deploy placement altına yazılıyor
+                max_replicas_per_node: 1
 
             # rollback_config:
             #     parallelism: The number of containers to rollback at a time. If set to 0, all containers rollback simultaneously.
@@ -47,6 +48,9 @@ services:
                 # max_failure_ratio: Failure rate to tolerate during an update.
                 # order: Order of operations during updates. One of stop-first (old task is stopped before starting new one), or start-first (new task is started first, and the running tasks briefly overlap) (default stop-first) Note: Only supported for v3.4 and higher.
             
+
+                
+
             # placement: # swarm çin gerekli alanlar aslında
             #     constraints: # https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints---constraint
             #         - "node.role=worker" # diğer seçenek manager
@@ -65,7 +69,7 @@ services:
             - ./project1/p1.env
 
         environment:
-            - TEST_ENV: test amaçlı konuldu
+            - TEST_ENV: "test amaçlı konuldu"
 
         expose: 
             - '5000'
