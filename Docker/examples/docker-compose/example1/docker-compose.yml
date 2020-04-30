@@ -124,7 +124,8 @@ services:
             args:
                 arg1: test amaçlı eklendi
 
-        depends_on: project1
+        depends_on: 
+            - project1
         healthcheck:
             test: ["CMD", "ping", "project1"]
             interval: 4s
