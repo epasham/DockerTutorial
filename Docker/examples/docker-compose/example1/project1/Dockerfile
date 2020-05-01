@@ -1,6 +1,9 @@
 # build aşaması için ARG kulanmak, build bitti runtime geçtiğimizde ise ENV çalışıyor.
 # Alttaki örneklerde bu şekilde
 
+# FROM tagınden önce çalıştırıan tün ARG lar FROM tagından sonra kaybolur buna dikkat etmek lazım.
+# sebebi ise multistage image lardan dolayı her bir from onceki fromdan sadce outputu alır geri kalan herşey kaybolur.
+
 # The scope of this ARG instruction comes into picture only after it is declared in the Dockerfile. 
 # it goes out of scope once the build is complete. 
 #So the scope of the ARG instruction is limited to build stage.
@@ -12,7 +15,7 @@ ARG UBUNTU_VERSION=16.04
 # Yukarıdaki ARG veriesi alında okunmuş oluyor
 FROM ubuntu:18.04
 
-
+ARG AFTER_FROM="bu ARG FROM tagindan sonra geldiği için göründü"
 
 
 # ENV instruction sets the environment variable and this sets the environment for the subsequent build instructions.
@@ -44,7 +47,8 @@ WORKDIR /home
 
 # unutma her bir RUN bir layer oluşturuyor gerekli değilse tek komut yapılmalı
 # RUN kısmı sade build aşamaında çalıştığı için ARG lar çalışcaktır. Amcak CMD kısımlarında ENV ler çalışabilir.
-RUN echo "Girilen veriyon check versiyonundan daha büyük" $UBUNTU_VERSION > $CHECK_VERSION
+RUN echo " $UBUNTU_VERSION ARG değeri görüldüğü gibi gelemdi sebebi FRO dan önce tanımlanması"
+RUN echo "AFTER_FROM ARG değeri = $AFTER_FROM"
 RUN echo "Girilen HOST_ENV $HOST_ENV"
 RUN echo "Girilen PORT $PORT_ENV"
 RUN mkdir project
