@@ -54,7 +54,7 @@ RUN mkdir myvolume
 
 WORKDIR /home/project
 COPY entrypoint.sh entrypoint.sh
-RUN chmod +x entrypoint3.sh
+RUN chmod +x entrypoint.sh
 
 
 # WORKDIR temp olara ayarlandığı için orada gidecek. 
@@ -78,7 +78,7 @@ VOLUME $VOLUME_NAME_ENV:/home/myvolume
 
 
 # executable shell de bırakıldığı için CMD kısmında echo ile devam edebildik
-ENTRYPOINT [ "entrypoint.sh" ]
+ENTRYPOINT [ "/home/project/entrypoint.sh" ]
 
 
 
