@@ -69,7 +69,7 @@ COPY copyfile.txt copyfile.txt
 # böylece /home/temp e konulan veriler hosts yazılmış olacak
 VOLUME /home/temp
 
-
+RUN echo "geçici dosya" >> /home/temp/temp.txt
 
 
 
