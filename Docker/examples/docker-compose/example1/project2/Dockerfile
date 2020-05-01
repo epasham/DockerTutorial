@@ -10,7 +10,9 @@ RUN apt install -y iputils-ping
 
 VOLUME myvolume:/home/myvolume
 
+COPY entrypoint.sh entrypoint.sh
 
+RUN shmod +x entrypoint.sh
 
 # interval : iki deneme arasında geçecek süre
 # timeout : healthcheck komutunun timeout süresi
@@ -20,9 +22,7 @@ VOLUME myvolume:/home/myvolume
 # https://www.alibabacloud.com/help/doc-detail/58588.htm
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD ping project1
 
+ENTRYPOINT ["entrypoint.sh"]
 
-# ekrana yazar yazmaz kapanacak demektir.
-CMD cat /home/myvolume/copyfile.txt
 
-ENTRYPOINT ["/bin/bash"]
 
