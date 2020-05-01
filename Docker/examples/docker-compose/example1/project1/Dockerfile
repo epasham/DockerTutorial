@@ -44,7 +44,7 @@ WORKDIR /home
 
 # unutma her bir RUN bir layer oluşturuyor gerekli değilse tek komut yapılmalı
 # RUN kısmı sade build aşamaında çalıştığı için ARG lar çalışcaktır. Amcak CMD kısımlarında ENV ler çalışabilir.
-RUN echo "Girilen veriyon check versiyonundan daha büyük $UBUNTU_VERSION > $CHECK_VERSION"
+RUN echo "Girilen veriyon check versiyonundan daha büyük" $UBUNTU_VERSION > $CHECK_VERSION
 RUN echo "Girilen HOST_ENV $HOST_ENV"
 RUN echo "Girilen PORT $PORT_ENV"
 RUN mkdir project
@@ -69,7 +69,7 @@ COPY copyfile.txt copyfile.txt
 # böylece /home/temp e konulan veriler hosts yazılmış olacak
 VOLUME /home/temp
 
-RUN echo "geçici dosya" >> /home/temp/temp.txt
+RUN touch /home/temp/temp.txt
 
 
 
