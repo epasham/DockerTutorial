@@ -53,6 +53,8 @@ RUN mkdir myvolume
 
 
 WORKDIR /home/project
+COPY entrypoint.h entrypoint.sh
+
 
 # WORKDIR temp olara ayarlandığı için orada gidecek. 
 # ancak biz isteseydik örneğin /temp/copyfile.txt gibi açıkçada belirtebilirdik.
@@ -75,7 +77,7 @@ VOLUME $VOLUME_NAME_ENV:/home/myvolume
 
 
 # executable shell de bırakıldığı için CMD kısmında echo ile devam edebildik
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "entrypoint.sh" ]
 
 
 
@@ -84,11 +86,8 @@ ENTRYPOINT [ "/bin/bash" ]
 # CMD ["bin/bash", "echo test"]
 
 # ekrana yazar yazmaz kapanacak demektir.
-CMD echo "Girilen HOST_ENV $HOST_ENV" \
-    echo "Girilen PORT_ENV $PORT_ENV"
-
-
-
+CMD ["echo",  "Girilen HOST_ENV $(HOST_ENV)"] \
+    ["echo", "Girilen PORT_ENV $(PORT_ENV)"]
 
 
 #The following ARG variables are set automatically:
