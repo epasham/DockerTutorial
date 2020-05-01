@@ -13,7 +13,7 @@ project1 klasöründe iken
 https://docs.docker.com/engine/reference/commandline/build/#options
 
 ```
-docker build . -t murat/project1:latest --build-arg UBUNTU_VERSION=18.04 VOLUME_PATH_ARG=/home/temp  VOLUME_NAME_ENV=myvolume
+docker build . -t murat/project1:latest --build-arg UBUNTU_VERSION=18.04 --build-arg VOLUME_PATH_ARG=/home/temp --build-arg VOLUME_NAME_ENV=myvolume
 ```
 
 daha sonra container ayağa kaldırılır. ancak bizim uygulamamız cotainer ın ayakta olmasını istiyor ve Dockerfile ımıza göre containerımız hemen kapancak. ,

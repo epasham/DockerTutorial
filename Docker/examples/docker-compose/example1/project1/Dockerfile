@@ -76,7 +76,7 @@ COPY copyfile.txt copyfile.txt
 VOLUME $VOLUME_PATH_ARG:/home/temp
 
 
-VOLUME $VOLUME_NAME_ARG:/home/myvolume
+VOLUME myvolume:/home/myvolume
 
 
 
