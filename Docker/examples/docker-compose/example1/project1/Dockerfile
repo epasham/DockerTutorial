@@ -7,6 +7,14 @@
 ARG CHECK_VERSION=Latest
 ARG UBUNTU_VERSION=16.04
 
+#eğer ARG boş gelirse hostun tmp klasörünü contaier altındaki tmp e bağlamış olacak.
+ARG VOLUME_PATH_ARG=/home/temp
+
+
+# ARG dosyasında ataması yapılıyor aslında ancak hiçbirşey atanmadıysa default değer atamk için myvolume2 yazıldı
+ARG VOLUME_NAME_ENV=myvolume2
+
+
 # $UBUNTU_VERSION Dockerfile build edilirken girilecek. boş geçilirse default değer yani 16.04 geçilmiş olacak.
 # Yukarıdaki ARG veriesi alında okunmuş oluyor
 FROM ubuntu:18.04
@@ -61,15 +69,14 @@ RUN chmod +x entrypoint.sh
 # ancak biz isteseydik örneğin /temp/copyfile.txt gibi açıkçada belirtebilirdik.
 COPY copyfile.txt copyfile.txt
 
-ENV VOLUME_PATH_ENV=/home/temp
 
-#eğer ENV boş gelirse hostun tmp klasörünü contaier altındaki tmp e bağlamış olacak.
+
+
 # burada pek tavsiye edilmesede bind mount yapmış olduk
-VOLUME $VOLUME_PATH:/home/myvolume
+VOLUME $VOLUME_PATH_ARG:/home/temp
 
-# env dosyasında ataması yapılıyor aslında ancak hiçbirşey atanmadıysa default değer atamk için myvolume2 yazıldı
-ENV VOLUME_NAME_ENV=myvolume2
-VOLUME $VOLUME_NAME_ENV:/home/myvolume
+
+VOLUME $VOLUME_NAME_ARG:/home/myvolume
 
 
 
