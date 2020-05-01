@@ -53,7 +53,7 @@ RUN mkdir myvolume
 
 
 WORKDIR /home/project
-COPY entrypoint.h entrypoint.sh
+COPY entrypoint.sh entrypoint.sh
 
 
 # WORKDIR temp olara ayarlandığı için orada gidecek. 
