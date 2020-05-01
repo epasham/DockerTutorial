@@ -5,5 +5,8 @@ set -e
 
 echo "---------------------- merhaba bu entrypoint den --------------------------"
 
+echo "Girilen HOST_ENV" $HOST_ENV
+echo "---------------------------------------------------"
+echo "Girilen PORT_ENV" $PORT_ENV
 
 exec "$@"

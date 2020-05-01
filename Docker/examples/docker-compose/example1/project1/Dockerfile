@@ -86,9 +86,13 @@ ENTRYPOINT [ "/home/project/entrypoint.sh" ]
 # Entrypoint kullanılmaycaksa aşağıdaki gibide yazlabilir
 # CMD ["bin/bash", "echo test"]
 
-# ekrana yazar yazmaz kapanacak demektir.
-CMD ["echo",  "Girilen HOST_ENV $(HOST_ENV)"] \
-    ["echo", "Girilen PORT_ENV $(PORT_ENV)"]
+# ekrana yazar yazmaz kapanacak demektir. buradan yazmak yerine entrypoint de environmen variable ı okuyup ekrana yazdırdık.
+# CMD ["echo",  "Girilen HOST_ENV $(HOST_ENV)"] \
+#     ["echo", "Girilen PORT_ENV $(PORT_ENV)"]
+
+
+
+
 
 
 #The following ARG variables are set automatically:
