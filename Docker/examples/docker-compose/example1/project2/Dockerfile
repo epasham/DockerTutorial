@@ -8,7 +8,12 @@ FROM ubuntu:18.04
 RUN apt update
 RUN apt install -y iputils-ping
 
-VOLUME myvolume:/home/myvolume
+
+
+# burayı alttaki gibi kulanırsak bu imagge için anonimous bir vomume oluşur
+# bizim amacımız ise project1 için dcocker cli ile oluşturulup container run edilirken mount edilen
+# myvolume adındaki volume bu proje içinde mount edeceğiz ki içindeki doyayı okuyup ekrana yaabilşelim
+# VOLUME /home/myvolume
 
 COPY entrypoint.sh /home/entrypoint.sh
 

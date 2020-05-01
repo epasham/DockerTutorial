@@ -13,7 +13,7 @@ project1 klasöründe iken
 https://docs.docker.com/engine/reference/commandline/build/#options
 
 ```
-docker build . -t murat/project1:latest --build-arg UBUNTU_VERSION=18.04 --build-arg VOLUME_PATH_ARG=/home/temp --build-arg VOLUME_NAME_ENV=myvolume
+docker build . -t murat/project1:latest --build-arg UBUNTU_VERSION=18.04
 ```
 
 daha sonra container ayağa kaldırılır. ancak bizim uygulamamız cotainer ın ayakta olmasını istiyor ve Dockerfile ımıza göre containerımız hemen kapancak. ,
@@ -24,7 +24,9 @@ ENV vermenin diğer bir yolu ise --env var1=value1 şeklinde direkt vermektir.
 
 
 ```
-docker run -d -it --env-file p1.env --rm  --name project1 murat/project1:latest bash
+
+docker volume create myvolume
+docker run -d -it --env-file p1.env --rm  --name project1 --network bridge --mount source=myvolume,target=/home/myvolume murat/project1:latest bash
 ```
 
 şimdi sıra ikinci projeyi çalıştımakta
@@ -38,5 +40,6 @@ docker build . -t murat/project2:latest
 daha sonra çalıştırıyoruz. fakat bu sefer project2 nin terminalinin attach olmasını istiyoruz bu nedenle -d paramatesini kaldırdıkö yani default ola -a çalışmış olacak.
 
 ```
-docker run  -it --rm  --name project2 murat/project2:latest bash
+docker volume create myvolume
+docker run  -it --rm  --name project2 --network bridge --mount source=myvolume,target=/home/myvolume murat/project2:latest bash
 ```

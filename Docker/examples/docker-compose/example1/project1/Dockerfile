@@ -7,13 +7,6 @@
 ARG CHECK_VERSION=Latest
 ARG UBUNTU_VERSION=16.04
 
-#eğer ARG boş gelirse hostun tmp klasörünü contaier altındaki tmp e bağlamış olacak.
-ARG VOLUME_PATH_ARG=/home/temp
-
-
-# ARG dosyasında ataması yapılıyor aslında ancak hiçbirşey atanmadıysa default değer atamk için myvolume2 yazıldı
-ARG VOLUME_NAME_ENV=myvolume2
-
 
 # $UBUNTU_VERSION Dockerfile build edilirken girilecek. boş geçilirse default değer yani 16.04 geçilmiş olacak.
 # Yukarıdaki ARG veriesi alında okunmuş oluyor
@@ -72,15 +65,18 @@ COPY copyfile.txt copyfile.txt
 
 
 
-# burada pek tavsiye edilmesede bind mount yapmış olduk
-VOLUME $VOLUME_PATH_ARG:/home/temp
+# burada aslında anonimous bir volume oluşturmuş oacağız host üzerinde
+# böylece /home/temp e konulan veriler hosts yazılmış olacak
+VOLUME /home/temp
 
 
-VOLUME myvolume:/home/myvolume
+
 
 
 
 # Aynı dosyayı bu sefer diğer containerla paylaşmak için volume a koyuyoruz.
+# bu foldersın yanı /home/myvolume un volume olar bağlanması laız bunun içinde docker cli da named voume tanımlanmalı.
+# project2 buradan veri okuyacak
 COPY copyfile.txt /home/myvolume/copyfile.txt
 
 

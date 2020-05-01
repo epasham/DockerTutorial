@@ -1,6 +1,11 @@
 
 ### STORAGE and VOLUME
 
+dikkat edilmesi gereken konu şu; dockerfile içinde yapılan VOLUME tanımlamasında named volume kullanmaya çalışsanız dahi sistem anonimous volume oluşturur.
+anladığım kadarıyla buradaki mantık şu, dockerfile host da ne olduğunu bilmediği için kendisi bir volume create edip onu bağlıyor dcoker default da directorysine.
+
+bu nedenle volume bilgisini docker cli daki volume direktifi ile vemek lazım yada compose kullanılmalı.
+
 https://docs.docker.com/storage/
 
 1. Volume Mount
