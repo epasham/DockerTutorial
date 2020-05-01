@@ -10,7 +10,7 @@ RUN apt install -y iputils-ping
 
 VOLUME myvolume:/home/myvolume
 
-ENTRYPOINT ["/bin/bash"]
+
 
 # interval : iki deneme arasında geçecek süre
 # timeout : healthcheck komutunun timeout süresi
@@ -22,5 +22,7 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD ping 
 
 
 # ekrana yazar yazmaz kapanacak demektir.
-CMD exec "$@" && cat /home/myvolume/copyfile.txt
+CMD cat /home/myvolume/copyfile.txt
+
+ENTRYPOINT ["/bin/bash"]
 
