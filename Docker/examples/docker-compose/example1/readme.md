@@ -25,6 +25,6 @@ ENV vermenin diğer bir yolu ise --env var1=value1 şeklinde direkt vermektir.
 
 
 ```
-docker run -d -it --env-file p1.env  --name project1 murat/project1:latest bin/bash
+docker run -d -it --env-file p1.env --rm  --name project1 murat/project1:latest bin/bash
 ```
 
