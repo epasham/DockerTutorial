@@ -67,13 +67,15 @@ ENV VOLUME_PATH_ENV=/home/temp
 # burada pek tavsiye edilmesede bind mount yapmış olduk
 VOLUME $VOLUME_PATH:/home/myvolume
 
-# Aynı dosyayı bu sefer diğer containerla paylaşmak için volume a koyuyoruz.
-COPY copyfile.txt /home/myvolume/copyfile.txt
-
-
 # env dosyasında ataması yapılıyor aslında ancak hiçbirşey atanmadıysa default değer atamk için myvolume2 yazıldı
 ENV VOLUME_NAME_ENV=myvolume2
 VOLUME $VOLUME_NAME_ENV:/home/myvolume
+
+
+
+# Aynı dosyayı bu sefer diğer containerla paylaşmak için volume a koyuyoruz.
+COPY copyfile.txt /home/myvolume/copyfile.txt
+
 
 
 
