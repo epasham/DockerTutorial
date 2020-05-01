@@ -38,5 +38,5 @@ docker build . -t murat/project2:latest
 daha sonra çalıştırıyoruz. fakat bu sefer project2 nin terminalinin attach olmasını istiyoruz bu nedenle -d paramatesini kaldırdıkö yani default ola -a çalışmış olacak.
 
 ```
-docker run  -it --rm  --name project2 murat/project1:latest bash
+docker run  -it --rm  --name project2 murat/project2:latest bash
 ```
