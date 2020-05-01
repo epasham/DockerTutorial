@@ -54,7 +54,7 @@ RUN mkdir myvolume
 
 WORKDIR /home/project
 COPY entrypoint.sh entrypoint.sh
-RUN chmod +x entrypoint.sh
+RUN chmod +x entrypoint3.sh
 
 
 # WORKDIR temp olara ayarlandığı için orada gidecek. 
