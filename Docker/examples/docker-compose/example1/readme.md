@@ -26,6 +26,17 @@ ENV vermenin diğer bir yolu ise --env var1=value1 şeklinde direkt vermektir.
 ```
 docker run -d -it --env-file p1.env --rm  --name project1 murat/project1:latest bash
 ```
+
 şimdi sıra ikinci projeyi çalıştımakta
 
+öncelikle projemizi build ediyoruz.
 
+```
+docker build . -t murat/project2:latest
+```
+
+daha sonra çalıştırıyoruz. fakat bu sefer project2 nin terminalinin attach olmasını istiyoruz bu nedenle -d paramatesini kaldırdıkö yani default ola -a çalışmış olacak.
+
+```
+docker run  -it --rm  --name project2 murat/project1:latest bash
+```
