@@ -5,7 +5,7 @@
 
 FROM ubuntu:18.04
 
-RUN RUN apt update
+RUN apt update
 RUN apt install -y ping
 
 VOLUME myvolume:/home/myvolume
