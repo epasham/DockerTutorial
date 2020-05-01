@@ -12,7 +12,7 @@ VOLUME myvolume:/home/myvolume
 
 COPY entrypoint.sh entrypoint.sh
 
-RUN shmod +x entrypoint.sh
+RUN chmod +x entrypoint.sh
 
 # interval : iki deneme arasında geçecek süre
 # timeout : healthcheck komutunun timeout süresi
