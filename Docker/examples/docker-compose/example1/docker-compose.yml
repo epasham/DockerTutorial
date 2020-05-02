@@ -169,9 +169,11 @@ networks:
         driver: bridge
         internal: true # docker-compose down dediğimizde gitmesini bekliyoruz. external olanlar ise compose dışında create edildikleri için dow durumunda silinmezler
     myhost:
-        driver: host
-        internal: true
-        subnet: 172.48.0.0/16
+        ipam:
+            driver: host
+            internal: true
+            config:
+                subnet: 172.48.0.0/16
     
     # mybridge2:
     #     external:
