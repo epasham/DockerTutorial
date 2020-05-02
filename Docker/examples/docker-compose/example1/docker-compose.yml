@@ -119,6 +119,7 @@ services:
                 nocopy: true # flag to disable copying of data from a container when a volume is created
         networks: # build aşamasında da belirtmiştik orada belirttiğimiz build aşamında  eğer ihtiyaç olursa onun için kullanılıyor. buradaki servis runtime da iken lazım olacak
             - mybridge
+            - myhost
 
 
 
@@ -176,3 +177,7 @@ networks:
 volumes: # servislerin içinde volum tipine oluşturduklarıız için kullanılır.
     myvolume: # project1 de test amaçlı oluşturmuştum
         external: true #yani compose dışında daha önce oluşturulmuş demektir. bu durumda down edilse bile silinmemesi gerekir.
+    myhost:
+        driver: default
+        internal: true
+        subnet: 172.48.0.0/16
