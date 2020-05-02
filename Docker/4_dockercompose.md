@@ -1,6 +1,8 @@
 
 https://docs.docker.com/compose/compose-file/
 
+https://www.docker.com/blog/docker-networking-design-philosophy/
+
 ### installation
 
 
@@ -143,7 +145,7 @@ daha birçok keyword için : https://docs.docker.com/compose/compose-file/
 
 
 ### Kaynaklar
-
+- https://www.docker.com/blog/docker-networking-design-philosophy/
 - https://docs.docker.com/compose/
 - https://docs.docker.com/compose/aspnet-mssql-compose/
 - https://docs.docker.com/samples/

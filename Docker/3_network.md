@@ -19,6 +19,8 @@ https://oktayegi.wordpress.com/2018/10/31/ubuntu-uzerinde-docker-5-network-ve-ng
 
 https://www.edureka.co/blog/docker-networking/
 
+https://www.docker.com/blog/docker-networking-design-philosophy/
+
 ## Docker Network Drivers
 
 https://medium.com/@dumlutimuralp/docker-networking-intro-62d4bc163843

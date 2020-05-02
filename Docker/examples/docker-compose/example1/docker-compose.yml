@@ -119,7 +119,7 @@ services:
                 nocopy: true # flag to disable copying of data from a container when a volume is created
         networks: # build aşamasında da belirtmiştik orada belirttiğimiz build aşamında  eğer ihtiyaç olursa onun için kullanılıyor. buradaki servis runtime da iken lazım olacak
             - mybridge
-            - myhost
+            - mynetwork
 
 
 
@@ -168,9 +168,9 @@ networks:
     mybridge:
         driver: bridge
         internal: true # docker-compose down dediğimizde gitmesini bekliyoruz. external olanlar ise compose dışında create edildikleri için dow durumunda silinmezler
-    myhost:
+    mynetwork:
         internal: true
-        ipam:
+        ipam: # IPAM is the name of configuration section. IPAM is an acronym, that stands for IP Address Management.
             driver: bridge
             config:
                 - subnet: 172.48.0.0/16
