@@ -8,7 +8,7 @@ services:
             args:
                 UBUNTU_VERSION: 18.04
             network: mybridge # bu daha önce oluşturulmuş olmasını bir önemi yok oluşturulduysa oluşturmuyor zaten: https://docs.docker.com/compose/compose-file/#network-configuration-reference
-            target: test #prod da olabilirdi stage yönetimi için gerekli
+            # target: test #prod da olabilirdi stage yönetimi için gerekli. dockerfile da multistage build yapılıyor olması laızm orası için gerekli
         container_name: project1 # otomaitk olarak ulaşmasın kendimiz izim vermiş olduk
         depends_on:
             - redis

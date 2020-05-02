@@ -13,7 +13,12 @@ ARG UBUNTU_VERSION=16.04
 
 # $UBUNTU_VERSION Dockerfile build edilirken girilecek. boş geçilirse default değer yani 16.04 geçilmiş olacak.
 # Yukarıdaki ARG veriesi alında okunmuş oluyor
-FROM ubuntu:18.04
+FROM ubuntu:18.04 as MyUbuntu 
+# as dan sonraki MyUbuntu multistage build için grekli
+# 1. yöntemde buradaki fromdan altta yazılacak diğer from a output çıkartılabilir.
+# 2. yontem test, prod uat gibi ortamların stage leri ayrı ayr ıyapılabilir burada ve build işleminde parametre lark geçirilebilir.
+# 3 .yönten örneğin window için ayrı bir from yazılabilir bud ayrı stage olur
+# 4. yöntem cmposite yapılabilir 
 
 ARG AFTER_FROM="bu ARG FROM tagindan sonra geldiği için göründü"
 
