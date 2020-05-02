@@ -1,6 +1,12 @@
 
 ### STORAGE and VOLUME
 
+
+https://thenewstack.io/methods-dealing-container-storage/
+
+https://forums.docker.com/t/touch-command-does-not-work-docker-compose-volume/60347
+
+
 dikkat edilmesi gereken konu şu; dockerfile içinde yapılan VOLUME tanımlamasında named volume kullanmaya çalışsanız dahi sistem anonimous volume oluşturur.
 anladığım kadarıyla buradaki mantık şu, dockerfile host da ne olduğunu bilmediği için kendisi bir volume create edip onu bağlıyor dcoker default da directorysine.
 

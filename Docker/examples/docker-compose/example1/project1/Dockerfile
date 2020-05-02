@@ -25,10 +25,10 @@ ARG AFTER_FROM="bu ARG FROM tagindan sonra geldiği için göründü"
 # ilk ENV yani HOST_ENV ise direkt girilmiş oldu.
 
 # build the image (env dosyasıyla veriyi aktarıyoruz)
-#docker build -t nodejs-server-env -f Dockerfile.env .
+# docker build -t nodejs-server-env -f Dockerfile.env .
 
-#run the container
-#docker run -d --name node-server-env -p 3000:3000 nodejs-server-env
+# run the container
+# docker run -d --name node-server-env -p 3000:3000 nodejs-server-env
 
 # yada  --env PORT=3070 parametresiyle veriyi geçirebiliriz.
 # yada ARG olarak alıp ENV e parametre olarka geçebiliriz. yukarrıda mesela 
@@ -49,8 +49,8 @@ WORKDIR /home
 # RUN kısmı sade build aşamaında çalıştığı için ARG lar çalışcaktır. Amcak CMD kısımlarında ENV ler çalışabilir.
 RUN echo " $UBUNTU_VERSION ARG değeri görüldüğü gibi gelemdi sebebi FRO dan önce tanımlanması"
 RUN echo "AFTER_FROM ARG değeri = $AFTER_FROM"
-RUN echo "Girilen HOST_ENV $HOST_ENV"
-RUN echo "Girilen PORT $PORT_ENV"
+RUN echo "Girilen HOST_ENV $HOST_ENV, değer görünmedi çünki ENV değerleri Runtime da görülebilir."
+RUN echo "Girilen PORT $PORT_ENV, değer görünmedi çünki ENV değerleri Runtime da görülebilir."
 RUN mkdir project
 RUN mkdir temp
 RUN mkdir myvolume
@@ -67,20 +67,21 @@ RUN chmod +x entrypoint.sh
 COPY copyfile.txt copyfile.txt
 
 
-
-
 # burada aslında anonimous bir volume oluşturmuş oacağız host üzerinde
 # böylece /home/temp e konulan veriler hosts yazılmış olacak
 VOLUME /home/temp
 
+# buraya koyduğumuz dosylar yok olacak yani mount işleminden sonra göremeyeceğiz.
+# çünki build aşamasında dosyaları koyuyoruz ancak volume tanımlama işi Runtime da oluyor bundan dolayı 
 RUN touch /home/temp/temp.txt
-
-
 
 
 # Aynı dosyayı bu sefer diğer containerla paylaşmak için volume a koyuyoruz.
 # bu foldersın yanı /home/myvolume un volume olar bağlanması laız bunun içinde docker cli da named voume tanımlanmalı.
 # project2 buradan veri okuyacak
+# öemmli bir konu şu cli üzerinden mount edildiğinde build aşamasında konan doylar kaybolmaz. örneğin burasi.
+# ancak yıkarıda temp olarak dockerfile içinden oluşturup mount ettiğimiz temp klasörüne koyduklarımız yok olacak. 
+#
 COPY copyfile.txt /home/myvolume/copyfile.txt
 
 
@@ -98,8 +99,6 @@ ENTRYPOINT [ "/home/project/entrypoint.sh" ]
 # ekrana yazar yazmaz kapanacak demektir. buradan yazmak yerine entrypoint de environmen variable ı okuyup ekrana yazdırdık.
 # CMD ["echo",  "Girilen HOST_ENV $(HOST_ENV)"] \
 #     ["echo", "Girilen PORT_ENV $(PORT_ENV)"]
-
-
 
 
 
