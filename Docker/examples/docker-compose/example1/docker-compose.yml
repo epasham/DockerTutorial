@@ -7,7 +7,7 @@ services:
             dockerfile: Dockerfile
             args:
                 UBUNTU_VERSION: 18.04
-            network: mybridge # bu daha önce oluşturulmuş olmalı. daha detaylı network tanımı için : https://docs.docker.com/compose/compose-file/#network-configuration-reference
+            network: mybridge # bu daha önce oluşturulmuş olmasını bir önemi yok oluşturulduysa oluşturmuyor zaten: https://docs.docker.com/compose/compose-file/#network-configuration-reference
             target: test #prod da olabilirdi stage yönetimi için gerekli
         container_name: project1 # otomaitk olarak ulaşmasın kendimiz izim vermiş olduk
         depends_on:
@@ -113,10 +113,10 @@ services:
 
         volumes: # daha detaylı volume tanımlamak için https://docs.docker.com/compose/compose-file/#volume-configuration-reference
             - type: volume
-              source: mydata
-              target: /home/data
+              source: myvolume
+              target: /home/myvolume
               volume: 
-                nocopy: true
+                nocopy: true # flag to disable copying of data from a container when a volume is created
         networks: # build aşamasında da belirtmiştik orada belirttiğimiz build aşamında  eğer ihtiyaç olursa onun için kullanılıyor. buradaki servis runtime da iken lazım olacak
             - mybridge
 
@@ -140,6 +140,13 @@ services:
         networks: # build aşamasında da belirtmiştik orada belirttiğimiz build aşamında  eğer ihtiyaç olursa onun için kullanılıyor. buradaki servis runtime da iken lazım olacak
             - mybridge
 
+        volumes: # daha detaylı volume tanımlamak için https://docs.docker.com/compose/compose-file/#volume-configuration-reference
+            - type: volume
+              source: myvolume
+              target: /home/myvolume
+              volume: 
+                nocopy: true # flag to disable copying of data from a container when a volume is created
+
 
     redis:
         image: redis:latest
@@ -159,7 +166,7 @@ services:
 networks:
     mybridge:
         driver: bridge
-        internal: true
+        internal: true # docker-compose down dediğimizde gitmesini bekliyoruz. external olanlar ise compose dışında create edildikleri için dow durumunda silinmezler
     # mybridge2:
     #     external:
     #         name: mybridge2 # daha önce oluşturulmuşsa network external name de onun adıyazılır.
@@ -167,4 +174,5 @@ networks:
 
 
 volumes: # servislerin içinde volum tipine oluşturduklarıız için kullanılır.
-    mydata: # project1 de test amaçlı oluşturmuştum
+    myvolume: # project1 de test amaçlı oluşturmuştum
+        external: true #yani compose dışında daha önce oluşturulmuş demektir. bu durumda down edilse bile silinmemesi gerekir.
