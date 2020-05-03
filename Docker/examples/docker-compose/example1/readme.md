@@ -21,6 +21,8 @@ docker build . -t murat/project1:latest --build-arg UBUNTU_VERSION=18.04
 daha sonra container ayağa kaldırılır. ancak bizim uygulamamız cotainer ın ayakta olmasını istiyor ve Dockerfile ımıza göre containerımız hemen kapancak. ,
 onu ayakta tutmak için bin/bash ile açacağız ancak background a çalışıyor olacak. -d parametresi detached modda çalıştırır -a dersek (ki vaasayılan budur) docker terminali bizim terminalimize attach eder.
 
+Ancak daha sonra entrypoint içine  _tail -f /dev/null_ komutu eklendi yani -d parametresi bash ve -d eklenmese de olur. 
+
 atach ederken run tim eolduğu için ENV parametresinide veriyoruz dikkat (--env-file p1.env).
 ENV vermenin diğer bir yolu ise --env var1=value1 şeklinde direkt vermektir.
 

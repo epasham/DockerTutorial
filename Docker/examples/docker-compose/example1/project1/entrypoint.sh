@@ -9,6 +9,8 @@ echo "Girilen HOST_ENV" $HOST_ENV
 echo "---------------------------------------------------"
 echo "Girilen PORT_ENV" $PORT_ENV
 
-sleep 120s
+# bu komut aslında boşlukta veri okuyup durur
+# böylece bu container kapanmadan evam eder. 
+tail -f /dev/null
 
 exec "$@"

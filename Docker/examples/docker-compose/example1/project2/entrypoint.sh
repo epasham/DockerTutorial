@@ -5,4 +5,6 @@ set -e
 
 cat /home/myvolume/copyfile.txt
 
+tail -f /dev/null
+
 exec "$@"
