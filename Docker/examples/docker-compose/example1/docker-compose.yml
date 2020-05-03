@@ -151,6 +151,7 @@ services:
 
     redis:
         image: redis:latest
+        command: redis-server --requirepass myPAss
         networks: # burası en üstteki serviteki gibi build içinde dğil dikkat build dışıdan kullanımı bu şekilde networkun
             - mybridge
         container_name: redis
