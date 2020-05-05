@@ -1,4 +1,4 @@
-ARG REPO=mcr.microsoft.com/dotnet/core/runtime
+ARG REPO=mcr.microsoft.com/dotnet/core/aspnet
 FROM $REPO:3.1-bionic
 
 COPY publish /home/publish
