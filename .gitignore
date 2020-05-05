@@ -1,3 +1,15 @@
+#folders
+###################
+bin
+obj
+debug
+Obj
+Debug
+
+
+
+
+
 # Compiled source #
 ###################
 *.com
