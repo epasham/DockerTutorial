@@ -23,7 +23,7 @@ namespace example1.Controllers
         {
             var redisPass=Environment.GetEnvironmentVariable("REDIS_PASSWORD");
 
-            var conn = ConnectionMultiplexer.Connect($"redis,ssl=false,passwor={redisPass}");
+            var conn = ConnectionMultiplexer.Connect($"redis,ssl=false,password={redisPass}");
 
             ViewBag.Message = conn.GetStatus();
 
