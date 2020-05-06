@@ -8,6 +8,7 @@ services:
             - "6000:5005"
         environment:
             REDIS_PASSWORD: password123
+            ASPNETCORE_ENVIRONMENT: Development
         container_name: aspnet
         depends_on: 
             - project2
