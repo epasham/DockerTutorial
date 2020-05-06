@@ -3,7 +3,15 @@
 
 docker-cli da swarm ile alakalı bölümleri atlama
 
-https://docs.docker.com/engine/reference/commandline/service/
+docker node https://docs.docker.com/engine/reference/commandline/node/
+
+docker service https://docs.docker.com/engine/reference/commandline/service/
+
+docker swarm  https://docs.docker.com/engine/reference/commandline/swarm/
+
+
+
+
 https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-placement-preferences---placement-pref (tüm maddeleri incelemek lazm)
 
 https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints---constraint

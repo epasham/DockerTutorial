@@ -1,0 +1,23 @@
+version: '3'
+services:
+    project1:
+        build: 
+            context: ./project1
+            dockerfile: Dockerfile
+        ports:
+            - "6000:5005"
+        environment:
+            REDIS_PASSWORD: password123
+        container_name: aspnet
+        depends_on: project2
+
+    project2:
+        build:
+            context: ./project2
+            dockerfile: Dockerfile
+        container_name: redis
+        ports:
+            - "6379:6379"
+        environment:
+            REDIS_PASSWORD: password123
+    
