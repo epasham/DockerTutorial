@@ -9,7 +9,8 @@ services:
         environment:
             REDIS_PASSWORD: password123
         container_name: aspnet
-        depends_on: project2
+        depends_on: 
+            - project2
 
     project2:
         build:
