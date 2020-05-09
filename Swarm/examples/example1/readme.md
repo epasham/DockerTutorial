@@ -20,7 +20,7 @@ bu nedenle compose doyasına baklırsa hem dockerfile belirtildi hemde registery
 öncelikle eğer yoksa local private bir registery ayağ akaldırıyoruz
 
 ```
-$ docker run -d -p 5001:5001 -v /mnt/registry:/var/lib/registry --restart=always --name registry registry:2
+$ docker run -d -p 6000:6000 -v /mnt/registry:/var/lib/registry --restart=always --name registry --rm registry:2
 ```
 daha sonra bu registery ye push luyoruz container ımızı
 
