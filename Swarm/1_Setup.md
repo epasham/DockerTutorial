@@ -62,4 +62,3 @@ daha sonra il çalıştırmız manager nodda alttaki komutu çalıştırısak 3 
 ```
  docker node ls
 ```
-

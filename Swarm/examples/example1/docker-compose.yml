@@ -1,7 +1,8 @@
 version: '3'
 services:
     project1:
-        build: 
+        build:
+            image: localhost:5001/aspnet  # docker-compose üzerinden push komutu çalıştrıldığında bu adres image deploy edilecek
             context: ./project1
             dockerfile: Dockerfile
         ports:
@@ -15,6 +16,7 @@ services:
 
     project2:
         build:
+            image: localhost:5001/redis  # goes to local registry
             context: ./project2
             dockerfile: Dockerfile
         container_name: redis
