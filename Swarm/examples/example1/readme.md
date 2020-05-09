@@ -1,10 +1,13 @@
 bu uygulama compose ile birlikte build yapılmasını konu alıyor.
 
-swarm ile bu compose doayası ile service leri ayağa kaldırmış olacağız.
+swarm ile bu compose dosyası ile service leri ayağa kaldırmış olacağız.
 
 ayrıca ikinci bir versiyonla azure uzerindeki docker registry ye compose image leri konulup oradanda çalışcak örnek yapılacak.
 
-1. öcelikle hazıladığımız docker-compose dosyasını buil alıyoruz ve docker-compose up ile ayağa kadırarak çalıştığındna emin oluyoruz. uygulamda asp.net core uygulamsı redis e bağlanrak redis info bilgisi çekiyor.
+şuan için dış bir registery miz olmadığı için bu komutları swarm clusterınızdaki bir makinada çalıştırıyor olcağız.
+
+
+1. öcelikle hazıladığımız docker-compose dosyasını build alıyoruz ve docker-compose up ile ayağa kadırarak çalıştığındna emin oluyoruz. uygulamda asp.net core uygulamsı redis e bağlanrak redis info bilgisi çekiyor.
 
 ```
 docker-compose build .
@@ -23,11 +26,11 @@ daha sonra bu registery ye push luyoruz container ımızı
 
 
 ```
-docker compose push 
+docker-compose push 
 ```
 
 
-3. bu adımda local registery de olan imagelerı kulanarak swarm moddda servilerimizi yağa kaldırıyoruz.
+3. bu adımda local registery de olan imagelerı kulanarak swarm moddda servilerimizi ayağa kaldırıyoruz.
 
 
 
