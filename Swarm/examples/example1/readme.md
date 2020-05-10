@@ -13,7 +13,7 @@ ayrıca ikinci bir versiyonla azure uzerindeki docker registry ye compose image 
 docker-compose build .
 docker-compose up
 ```
-2. çalıştığın aemin oladuktan sonra örneğimizde local registery ye (127.0.0.1) e imageımızı docker-compose push ile deploy ediyoruz. çünki docker stack build alamıyor sadece registery den okuyabiliyor.
+2. çalıştığın emin olduktan sonra örneğimizde local registery ye (127.0.0.1) e imageımızı docker-compose push ile deploy ediyoruz. çünki docker stack build alamıyor sadece registery den okuyabiliyor.
 
 bu nedenle compose doyasına baklırsa hem dockerfile belirtildi hemde registery
 
@@ -30,6 +30,24 @@ daha sonra bu registery ye push luyoruz container ımızı
 ```
 docker-compose push 
 ```
+
+ancak bu komutu çalıştırdığımızda registry miz local host  da olmadığı içn https isteyecektir docker daemon bununla uğraşmamak için docker daemon ayarlarında http ye (insecure) izin vermek için alttaki ayarı yapıyoruz.
+
+https://docs.docker.com/registry/insecure/#deploy-a-plain-http-registry
+
+```
+sudo nano /etc/docker/daemon.json
+
+# add following rows
+
+{
+  "insecure-registries" : ["myregistrydomain.com:5000"]
+}
+
+```
+
+
+
 registery de liste almak için
 
 ```
@@ -74,5 +92,10 @@ sudo ss -tunlp
 ```
 docker stack deploy --compose-file docker-compose.yml myaspnetproject
 ```
+
+hata yaptığmız durumlarda docker-compose ile registry den image silmek için eğer kullanığımız cli push ve pull dışında bşir araç sunmuyorsa tek şansımız registry API kullanmaktır.
+
+https://docs.docker.com/registry/spec/api/#deleting-an-image
+
 
 
