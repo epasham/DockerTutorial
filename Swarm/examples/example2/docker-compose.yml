@@ -1,0 +1,48 @@
+version: '3'
+services:
+    project1:
+        image: madmin.azurecr.io/aspnet:3.0  # docker-compose üzerinden push komutu çalıştrıldığında bu adres image deploy edilecek
+        build:
+            context: ./project1
+            dockerfile: Dockerfile
+        ports:
+            - "6001:5005"
+        environment:
+            REDIS_PASSWORD: password123
+            ASPNETCORE_ENVIRONMENT: Development
+        container_name: aspnet
+        depends_on: 
+            - project2
+        deploy:
+            mode: replicated
+            replicas: 2
+            labels: [APP=VOTING]
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+    
+
+    project2:
+        image: madmin.azurecr.io/redis:3.0  # goes to local registry
+        build:
+            context: ./project2
+            dockerfile: Dockerfile
+        container_name: redis
+        ports:
+            - "6379:6379"
+        environment:
+            REDIS_PASSWORD: password123
+        deploy:
+            mode: replicated
+            replicas: 2
+            labels: [APP=VOTING]
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+            placement:
+                constraints: [node.hostname == swarm1]
+    

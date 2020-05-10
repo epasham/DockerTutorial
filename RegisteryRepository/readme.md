@@ -1,3 +1,24 @@
+registery lere login olmada key save lernirken bir hata meydana geliyor 
+
+```
+Error saving credentials: error storing credentials - err: exit status 1, out: `Cannot autolaunch D-Bus without X11 $DISPLAY`
+```
+
+buu hatyı gidermek için alttaki komutu çalıştırınız.
+
+```
+apt install gnupg2 pass
+```
+
+eğer bu yöntem çalışmazsa 
+
+stackoverflow da ki soruyu takip edebilirsiniz
+
+https://stackoverflow.com/questions/50151833/cannot-login-to-docker-account
+
+
+
+
 https://hasanyousuf.com/2019/09/21/how-to-install-sonatype-nexus-3-on-centos6-10/
 https://qiita.com/leechungkyu/items/86cad0396cf95b3b6973
 https://medium.com/@acokgungordu/nexus-repository-manager-3%C3%BC-depo-olarak-kullanma-docker-images-71ef1b2ccdea
