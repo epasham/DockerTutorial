@@ -1,7 +1,7 @@
 version: '3'
 services:
     project1:
-        image: swarm1:5003/aspnet  # docker-compose üzerinden push komutu çalıştrıldığında bu adres image deploy edilecek
+        image: swarm1:5003/aspnet:3.0  # docker-compose üzerinden push komutu çalıştrıldığında bu adres image deploy edilecek
         build:
             context: ./project1
             dockerfile: Dockerfile
@@ -25,7 +25,7 @@ services:
     
 
     project2:
-        image: swarm1:5003/redis  # goes to local registry
+        image: swarm1:5003/redis:3.0  # goes to local registry
         build:
             context: ./project2
             dockerfile: Dockerfile

@@ -1,3 +1,17 @@
+kybernetesde ki pod a benzer birşey burada task olara geçiyor.
+
+
+![swarm diagram](files/services-diagram.png)
+
+
+#### Tasks and scheduling
+A task is the atomic unit of scheduling within a swarm. When you declare a desired service state by creating or updating a service, the orchestrator realizes the desired state by scheduling tasks. For instance, you define a service that instructs the orchestrator to keep three instances of an HTTP listener running at all times. The orchestrator responds by creating three tasks. Each task is a slot that the scheduler fills by spawning a container. The container is the instantiation of the task. If an HTTP listener task subsequently fails its health check or crashes, the orchestrator creates a new replica task that spawns a new container.
+
+![task](files/service-lifecycle.png)
+
+
+
+
 ### Özellikleri
 
 - __Cluster management integrated with Docker Engine:__ Use the Docker Engine CLI to create a swarm of Docker Engines where you can deploy application services. You don’t need additional orchestration software to create or manage a swarm.

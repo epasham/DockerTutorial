@@ -1,3 +1,19 @@
+
+ayrıca root files klasöründe bazı dökümanlar mavcut bakılabilir.
+
+
+
+- https://www.youtube.com/watch?v=E5ezkYSiNiE
+- https://success.docker.com/article/swarm-troubleshooting-methodology
+- https://github.com/project-sunbird/sunbird-devops/wiki/Docker-swarm-troubleshooting
+- https://cumulusnetworks.com/blog/troubleshooting-docker-swarm-netq/
+- https://runnable.com/blog/5-problems-with-docker-swarm
+- 
+
+
+
+
+
 https://docs.docker.com/engine/swarm/admin_guide/
 
 - Add Manager nodes for fault tolerance (https://docs.docker.com/engine/swarm/admin_guide/#add-manager-nodes-for-fault-tolerance)

@@ -240,7 +240,7 @@ $ docker service scale frontend=50
 frontend scaled to 50
 ```
 
-
+swarm modda service modu belirtilmezse reaplicated olarak başlar ki debest practice de budur. birde global mode var, burada da bütün node larda  placement constraints and resource requirements karşılacayak şekilde container ları çalıştırmaya çalışır.
 
 The following command tries to scale a global service to 10 tasks and returns an error.
 ```
