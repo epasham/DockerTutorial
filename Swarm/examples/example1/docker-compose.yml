@@ -13,6 +13,16 @@ services:
         container_name: aspnet
         depends_on: 
             - project2
+        deploy:
+            mode: replicated
+            replicas: 2
+            labels: [APP=VOTING]
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+    
 
     project2:
         image: swarm1:5003/redis  # goes to local registry
@@ -24,4 +34,15 @@ services:
             - "6379:6379"
         environment:
             REDIS_PASSWORD: password123
+        deploy:
+            mode: replicated
+            replicas: 2
+            labels: [APP=VOTING]
+            restart_policy:
+                condition: on-failure
+                delay: 10s
+                max_attempts: 3
+                window: 120s
+            placement:
+                constraints: [node.hostname == swarm1]
     

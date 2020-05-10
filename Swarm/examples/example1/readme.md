@@ -7,6 +7,9 @@ ayrıca ikinci bir versiyonla azure uzerindeki docker registry ye compose image 
 şuan için dış bir registery miz olmadığı için bu komutları swarm clusterınızdaki bir makinada çalıştırıyor olcağız.
 
 
+burada şunu unutmamak lazım swarm mod yokken biz docker name ile ulaşabiliyorduk containerlarımıza, dolayısıyle servislerimize ancak burada herşey servis olduğu için servis isimlerini kullanmamız lazım artık.
+
+
 1. öcelikle hazıladığımız docker-compose dosyasını build alıyoruz ve docker-compose up ile ayağa kadırarak çalıştığındna emin oluyoruz. uygulamda asp.net core uygulamsı redis e bağlanrak redis info bilgisi çekiyor.
 
 ```

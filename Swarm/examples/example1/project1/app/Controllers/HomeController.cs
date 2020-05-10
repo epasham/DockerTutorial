@@ -23,7 +23,9 @@ namespace example1.Controllers
         {
             var redisPass=Environment.GetEnvironmentVariable("REDIS_PASSWORD");
 
-            var conn = ConnectionMultiplexer.Connect($"redis,ssl=false,password={redisPass}");
+
+            // swarm modda artık service adı yazılır. bizde compose dosyamızda service adımızı project2 olark girmiştik
+            var conn = ConnectionMultiplexer.Connect($"project2,ssl=false,password={redisPass}");
 
             ViewBag.Message = conn.GetStatus();
 
