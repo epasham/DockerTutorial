@@ -6,7 +6,7 @@ services:
             context: ./project1
             dockerfile: Dockerfile
         ports:
-            - "6000:5005"
+            - "6001:5005"
         environment:
             REDIS_PASSWORD: password123
             ASPNETCORE_ENVIRONMENT: Development

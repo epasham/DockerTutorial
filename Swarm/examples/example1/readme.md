@@ -19,8 +19,10 @@ bu nedenle compose doyasına baklırsa hem dockerfile belirtildi hemde registery
 
 öncelikle eğer yoksa local private bir registery ayağ akaldırıyoruz
 
+bizde host da 5000 portu dolu olduğu için 5003 e yaraldık
+
 ```
-$ docker run -d -p 5003:5003 -v /mnt/registry:/var/lib/registry --restart=always --name registry --rm registry:2
+$ docker run -d -p 5003:5000 -v /mnt/registry:/var/lib/registry --restart=always --name registry --rm registry:2
 ```
 daha sonra bu registery ye push luyoruz container ımızı
 
@@ -28,21 +30,49 @@ daha sonra bu registery ye push luyoruz container ımızı
 ```
 docker-compose push 
 ```
+registery de liste almak için
+
+```
+wget http://localhost:5003/v2/_catalog && less _catalog
+```
 
 
 3. bu adımda local registery de olan imagelerı kulanarak swarm moddda servilerimizi ayağa kaldırıyoruz.
 
 
+çalışan tüm container ların kullanığı portları listelemek için
+
+```
+docker port $(docker container ls -q)
+```
+linux deki tüm açık portlar
+
+```
+sudo netstat -tunlp
+```
+
+-t Show TCP ports.
+-u Show UDP ports.
+-n Show numerical addresses instead of resolving hosts.
+-l Show only listening ports.
+-p Show the PID and name of the listener’s process.
 
 
 ```
-docker stack deploy 
 
 
 
 
+yada ss i kullanabiliriz
+
+```
+sudo ss -tunlp
+```
 
 
 
+```
+docker stack deploy --compose-file docker-compose.yml myaspnetproject
+```
 
 
