@@ -60,8 +60,6 @@ sudo nano /etc/docker/daemon.json
 
 ```
 
-
-
 registery de liste almak için
 
 ```
@@ -72,8 +70,11 @@ wget http://localhost:5003/v2/_catalog && less _catalog
 3. bu adımda local registery de olan imagelerı kulanarak swarm moddda servilerimizi ayağa kaldırıyoruz.
 
 
+--with-registry-auth parametresini ekleme sebebimiz bütün node larda login işlemi için bilgi taşımasını sağlamaktır.
+
+
 ```
-docker stack deploy --compose-file docker-compose.yml myaspnetproject
+docker stack deploy --with-registry-auth --compose-file docker-compose.yml myaspnetproject
 ```
 
 karşılaşabilceğimiz halarla ilgili olarak

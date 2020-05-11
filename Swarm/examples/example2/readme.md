@@ -19,6 +19,13 @@ docker-compose up
 docker login madmin.azurecr.io
 ```
 
+registry ye login olurken hata alınabilir düzeltmek için alttaki kurulumu yapınız
+
+```
+apt install gnupg2 pass
+```
+
+
 daha sonra build aldığımız compose servisimizi pushluyoruz.
 
 ```
@@ -30,8 +37,10 @@ burada insecure registery durumunu yaşamayacağız çünki azure registery kull
 3. bu adımda local registery de olan imagelerı kulanarak swarm moddda servilerimizi ayağa kaldırıyoruz.
 
 
+--with-registry-auth parametresini ekleme sebebimiz bütün node larda login işlemi için bilgi taşımasını sağlamaktır.
+
 ```
-docker stack deploy --compose-file docker-compose.yml myaspnetproject
+docker stack deploy --with-registry-auth --compose-file docker-compose.yml myaspnetproject
 ```
 
 karşılaşabilceğimiz halarla ilgili olarak
