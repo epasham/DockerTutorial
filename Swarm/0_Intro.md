@@ -1,6 +1,11 @@
 kybernetesde ki pod a benzer birşey burada task olara geçiyor.
 
 
+definitive guide
+https://gabrieltanner.org/blog/docker-swarm
+
+
+
 ![swarm diagram](files/services-diagram.png)
 
 
