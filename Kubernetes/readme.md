@@ -1,3 +1,52 @@
+Dış Kaynaklar
+
+1. References SAyfası
+
+https://kubernetes.io/docs/reference/
+
+
+bu sayfada tüm CLI ve API  referanslarına erişmek münmkün.
+
+Ayrıca API ye arişim ve detaylı use case kullanımlarıyla anlatılıyor.
+
+2. Tasks Sayfası
+
+bu sayfada gerçek kullanımda karşılaşacağımız bir çok uzer case ile ilgili baştan sona uygulamalar mevcut.
+
+Kurulum. konfigurasyon, Job yönetimi, güvenlik, monitoring, loglama, networking vb bir çok konu başlığı mevcut
+
+3. Getting Started
+
+öcellikle Best Practice ler sayfası çok faydalı
+
+https://kubernetes.io/docs/setup/best-practices/multiple-zones/
+
+
+
+İç Kaynaklar
+
+1. [Concepts](Concepts/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Kubernetes' i incelerken iki bölüme ayıracağız 
 

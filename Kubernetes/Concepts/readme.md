@@ -1,0 +1,21 @@
+0. Introduction
+1. Componenets
+2. Kubernetes Objects
+   1. Object Management
+   2. Working Objects
+3. Cluster Architecture
+4. Workloads
+   1. Pods
+   2. Contollers
+5. Services
+6. Connect App with Services and DNS settings
+7. Ingress and Networking
+8. BOŞŞ
+9.  Storage
+10. Configuration
+11. Secrets
+12. Managing Resources
+13. Pod Security
+14. Scheduling and Eviction
+15. Cluster Administrator
+16. API Priority and Fairness
