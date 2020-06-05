@@ -1,0 +1,20 @@
+{
+    "hosts": [
+        "nginxlb.muratcabuk.com",
+        "127.0.0.1",
+        "localhost",
+        "165.227.247.99"
+    ],
+    "CN": "nginxlb.muratcabuk.com",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [{
+        "C": "NL",
+        "L": "Amsterdam",
+        "ST": "Noord-Holland",
+        "O": "Murat Cabuk",
+        "OU": "Operations"
+    }]
+}

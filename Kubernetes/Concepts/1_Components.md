@@ -2,6 +2,9 @@
 
 ![componenets](files/components-of-kubernetes.png)
 
+
+[Bakınız Güzel anlatım](https://www.digitalocean.com/community/tutorials/an-introduction-to-kubernetes)
+
 Resim incelendiğinde 2 parçanın olduğu görülecektir
 
 1. Kubernetes Control Plane
@@ -23,13 +26,22 @@ bu iki bölümün komponentlerini incelemek lazım
        - Service controller: For creating, updating and deleting cloud provider load balancers
 2. __Node Componenets__
    bütün node larda çalışan komponetler
-   1. __kubelet:__ containerların pos ları içinde çalıştığından emin olur.kbernets tarafında create edilmemiş hiçbir container ı yönetmez. PodSpec e uygun olarak contianerları çalıştığından emin olur.
+   1. __kubelet:__ containerların pod ları içinde çalıştığından emin olur.kbernets tarafında create edilmemiş hiçbir container ı yönetmez. PodSpec e uygun olarak contianerları çalıştığından emin olur.
+
+kubelet ler kubeadm tarafından kurulmaz manuel olarka kurulması gerekir. butun pod lara kurulur.
+
    2. __kube proxy__: kuberntes network servislerine uygun olarak pod ların kuberntes içindeki network haberleşmelerini sağlar.
+
+örneğin pod lar oluşturuldukları node larda bir  ip adresi alır. bunların önüne bir service koyduğuuzda service sanal bir componenttir, ram da çalışır. pod larla aynı netwprkde değildir ve pod ların tek bir uygulama gibi dışa açılmasını sağlar. peki bunu nasıl yapar? kube-proxy ile. kube-proxy her bir node da kuruludur.
+
    3. __Container runtime__: The container runtime is the software that is responsible for running containers.
 
     Kubernetes supports several container runtimes: Docker, containerd, CRI-O, and any implementation of the Kubernetes CRI (Container Runtime Interface).
 
     biz Docker ı kullanıyor olacağız.
+
+![kubectl](files/kubectl.png)
+
 
 #### Kubernetes API
 
@@ -37,3 +49,4 @@ aslında elimizdeeki cubectl cli tamamen API ile haberşen bir uygulama. tüm si
 
  
 
+![resources](files/alltogether.jpg)

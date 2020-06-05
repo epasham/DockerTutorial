@@ -5,7 +5,12 @@ bu kavramları iyi öğren
 
 PV, PVC, Storage Class, and Provisioner
 
+Pod -> PVC -> PV -> Host machine
 
+Persistent Volume Pod un talebi doğrultusunda oluşturulup pod a bağlanması Persistant Volume Clame olmuş oluyor.
+
+
+![storage](files/storage.png)
 
 __A PersistentVolume (PV)__ 
 
@@ -14,6 +19,10 @@ is a piece of storage in the cluster that has been provisioned by an administrat
 __A PersistentVolumeClaim (PVC)__
 
 is a request for storage by a user. It is similar to a Pod. Pods consume node resources and PVCs consume PV resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., they can be mounted once read/write or many times read-only).
+
+![pv pvc](files/pv-pvc.png)
+
+görüldüğü üzere persitant volume lar namespace e bağlı değildir. ancak PVC dahildir.
 
 __The keywords you need to pay attention to here are by an administrator and by a user.__
 

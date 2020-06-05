@@ -1,6 +1,45 @@
+### Kuhernets Networking
+
+https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/ (kesin bakılmalı)
+
+https://neuvector.com/network-security/advanced-kubernetes-networking/
+
+
+https://willwarren.com/2019/05/running-kubernetes-on-ubuntu-18-04-virtualbox/
+
+
 ### Ingress
 
 https://kubernetes.io/docs/concepts/services-networking/ingress/
+
+
+
+![network](files/network.jpg)
+
+
+Kubernetes flat network kullanıyor.
+
+#### Farklarını inceleyek olursak
+
+- __Flat Network__
+
+bütün host ve pod ların aynı subnet de olabildikleri (Layer 2) network türüdür.
+
+Katman 2 ve katman 3 ağları hakkında hızlı bir not. Aynı alt ağdaki ana bilgisayarlar katman 2 ağındadır. Alt ağları birbirine bağladığınızda, alt ağlar katman 3 ağındadır. Katman 2 ağlarında adresleme mac adresleri aracılığıyla gerçekleşir. Katman 3 ağlarda adresleme IP adresleri aracılığıyla gerçekleşir.
+
+Aynı alt ağdaki kısa ana bilgisayarlar katman 2 üzerinden iletişim kurar ve farklı alt ağlardaki ana bilgisayarlar IP adresleri üzerinden katman 3 üzerinden iletişim kurar.
+
+- __Overlay Netwok__
+
+Overlay networkler, mevcut ağların (underlays) üzerine ağ oluşturmanıza olanak tanır. Katman 2 veya katman 3 katmanları oluşturmayı seçebilirsiniz.
+
+Peki nasıl seçmelisin? Çoğu durumda, katman 3 ağ kurulumu ve kullanımı en ölçeklenebilir ve en kolay ağdır. Kesinlikle gerekli olmadıkça, katman 2 kaplama alt ağları ana bilgisayarlar arasında gerilmemelidir.
+
+Container lar, tek bir ana bilgisayardaki özel bir ağdır, katman 2 alt ağındadır. Örneğin 10.0.3.0/24 tipik bir özel NAT ağıdır ve ağdaki kapsayıcılar IP'leri alt ağ aralığında alırlar, yani 10.0.3.10, 10.0.3.11 vb. X "
+
+- __Vxlan__
+
+Vxlan, Linux çekirdeğinde yerleşiktir ve katman 3 ağı üzerinden katman 2 ağı oluşturmanıza olanak tanır. Container ana bilgisayarlarını Vxlan ile bağladıktan sonra, Vxlan köprüsüne bağlı container lar veya VM'ler ana bilgisayarlar arasında aynı katman 2 alt ağında olacaktır.
 
 
 

@@ -3,6 +3,8 @@ https://kubernetes.io/docs/concepts/services-networking/service/
 Kubernetes her bir pod a ip adersi verir ve aynı işi yapan bir grup pod a tek bir DNS name verir. böylece load balance yapmamız sağlanmış olur.
 
 
+![pod service controller](files/service-pod-repconroller.png)
+
 ### Services
 
 
@@ -55,6 +57,7 @@ subsets:
       - port: 9376
 ```
 
+![eents](files/eventss.jpg)
 
 
 

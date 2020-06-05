@@ -1,11 +1,20 @@
 In Kubernetes, scheduling refers to making sure that Pods are matched to Nodes so that Kubelet can run them.
 
+yan ischeduler ın temel vazifesi aslında sadce hangi podn hangi node a gideceğini belirlemektir.
+
 kube-scheduler is the default scheduler for Kubernetes and runs as part of the control plane. kube-scheduler is designed so that, if you want and need to, you can write your own scheduling component and use that instead.
 
 kube-scheduler selects a node for the pod in a 2-step operation:
 
 1. Filtering
 2. Scoring
+
+
+hangi pode un hangi node a gideceğinie filtreleme ve skorlama yaprak karar verir.
+
+ilk olarak kullanılcabilcek node ları filtreler daha sonrada kaynak yeterliliği en çok hangi node da ise ona kurulum yapar.
+
+tabi bunlar dışında resource requirement and limit,taint and tolerant ve node selector ve Affinity gibi konularda var ileride.
 
 
 ### Taints and Tolerations
@@ -18,12 +27,20 @@ Taints and tolerations work together to ensure that pods are not scheduled onto 
 
 Taints and tolerations, podların uygunsuz node lara programlanmamasını sağlamak için birlikte çalışır. Bir node a bir veya daha fazla taints uygulanır; bu, node un taints lara tolerans göstermeyen herhangi bir pod u kabul etmemesi gerektiğini belirtir.
 
+yani örneğin biz bir node un sadece belirli özelliklere sahip pod ları kabul etmesini istemişsek node a taint oluşturmuş oluyoruz. ilgili pod ların eğer tolerate ei varsa bu node kurulabilirler.
+
+
 örnek 
 
-train oluşturmak 
+taint oluşturmak 
 
 ```
-kubectl taint nodes node1 key=value:NoSchedule
+kubectl taint nodes node1 key=value:NoSchedule (diğer seçenekler PreferNoSchedule, NoExecute) yani tolerantı olmayan pod lar ne yapacak
+
+NoScheule yazan kısım taint-effect olarak geçiyor.
+
+mesela master node a hiç bir pod kurulmaz bunu sağlamaka için master nodea a aslında arka atarafta taint tanımlanmıştır.
+
 ```
 train silmek
 ```
@@ -134,6 +151,8 @@ The NodeRestriction admission plugin prevents kubelets from setting or modifying
 2. Add labels under the node-restriction.kubernetes.io/ prefix to your Node objects, and use those labels in your node selectors. For example, example.com.node-restriction.kubernetes.io/fips=true or example.com.node-restriction.kubernetes.io/pci-dss=true.
 
 - __Affinity and anti-affinity__
+
+daha detaylı ve karmaşık scheduling için kullanılır. nodeSelactor deki sadece takı eşitlikten ziyade (in, notin vb) terimlerle schedulimg yönetimi sağlanır.
 
 nodeSelector provides a very simple way to constrain pods to nodes with particular labels. The affinity/anti-affinity feature, greatly expands the types of constraints you can express.
 
