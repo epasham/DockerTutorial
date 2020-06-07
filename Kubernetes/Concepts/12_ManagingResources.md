@@ -5,6 +5,8 @@ https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 ![resources](files/alltogether.jpg)
 
 
+https://engineering.opsgenie.com/advanced-kubernetes-objects-53f5e9bc0c28 (kesinlikle bakılmalı)
+
 __Request and Limit__
 
 If the node where a Pod is running has enough of a resource available, it’s possible (and allowed) for a container to use more resource than its request for that resource specifies. However, a container is not allowed to use more than its resource limit.

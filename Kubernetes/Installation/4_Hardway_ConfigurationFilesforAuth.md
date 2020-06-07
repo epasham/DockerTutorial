@@ -1,5 +1,7 @@
 Resmi [kubernetes](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) sayfasında geçen kubeconfig dosyalarını oluşturacağız.
 
+[kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
 Config doyalarımızı oluşturduktan sonra içeriklerine baktğımızda 3 an bölüm göreceğiz.
 
 1. Cluster: APi serverların IP'leri, sertifikları

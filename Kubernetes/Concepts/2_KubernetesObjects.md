@@ -1,5 +1,8 @@
 #### Kubernetes Objects
 
+Component vs Object vs Resources ??
+
+
 The basic Kubernetes objects include:
 
 - Pod
@@ -7,7 +10,7 @@ The basic Kubernetes objects include:
 - Volume
 - Namespace
 
-Kubernetes also contains higher-level abstractions that rely on controllers to build upon the basic objects, and provide additional functionality and convenience features. These include:
+Kubernetes also contains higher-level abstractions that rely on controllers to build upon the basic objects, and provide additional functionality and convenience features. These include: (aslında bunlara Resources da denilir)
 
 - Deployment
 - DaemonSet
