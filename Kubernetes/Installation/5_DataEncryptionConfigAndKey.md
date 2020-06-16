@@ -20,7 +20,9 @@ certutil -encode in.txt out.txt
 
 out.txt doosyasındaki base64 encoded metni alıyoruz : TUlJRW93SUJBQUtDQVFFQXp4aWs4NE03eDNiNnJUY3
 
-kubeconfigs klasörüne açacağımız encryption-config.yaml doyasına alttaki metni kopyalıyoruz.
+Ben ileride de açcağımız yaml dosyaları için files klsörü altına yaml adında bir klasör açarak bu klasör içinde oluştuyor olcağım yaml dosyasını. 
+
+encryption-config.yaml adındaki bir dosyayı yaml klasörüne oluşturup alttki kısmı içine kopyalıyoruz.
 
 ```
 kind: EncryptionConfig
@@ -36,13 +38,12 @@ resources:
       - identity: {}
 ```
 
-Bu dosyayı master node lara (kaynakların bazılarında bu node lara controller da deniyor). 
-
+Daha sonra yaml klasörünü master node lara (kaynakların bazılarında bu node lara controller da deniyor) kopyalıyoruz. 
 
 Şimdiye kadar şunları yaptık
 
 - alyapı ve internet ayarlarını yaptık
-- sertifikarları oluşturduk
+- sertifikaları oluşturduk
 - kubeconfig dosyalarını oluşturduk
 - ve bütün sertifika, kubeconfig ve secret key leri sunuculara koyaladık
 

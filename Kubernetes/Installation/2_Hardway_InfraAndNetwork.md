@@ -13,7 +13,7 @@ __3 Adet network oluşturuyor oluyoruz__
 
 Aşağıda yapacağımız ayarlarda 10.240.0.0/24 bloğunu ayarlarmış oluyoruz.
 
-2. Bunun pod ların knedi aralarından haberleşmesi için bir network bloğu lazım (POD CIDR - Classless Inter-Domain Routing).
+2. Bunun pod ların kendi aralarından haberleşmesi için bir network bloğu lazım (POD CIDR - Classless Inter-Domain Routing).
 
 Bunun için bu bölümde herhangi bir ayar yapmayacağız ancak ileride lazım olacağı için burada bloğu kaynaklarda böyle belirtildiği için bizde 10.200.0.0/16 olarak belirledik.
 
