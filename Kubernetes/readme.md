@@ -22,12 +22,25 @@ Kurulum. konfigurasyon, Job yönetimi, güvenlik, monitoring, loglama, networkin
 https://kubernetes.io/docs/setup/best-practices/multiple-zones/
 
 
+4. Kapsamlı Kubernetes Sayfası
+
+https://ansilh.com/
+
+
+
 
 İç Kaynaklar
 
 1. [Concepts](Concepts/)
 2. [References](References/)
-3. https://ansilh.com/
+3. [Tools](KubernetesTools/)
+4. [Hardway Installation](HardwayInstallation/)
+5. [Hardway Installation](HardwayInstallation2/)
+6. [Kubeadm Installation](KubeadmInstallation/)
+7. [Ansible Installation](AnsibleInstallation/)
+
+
+
 
 
 
