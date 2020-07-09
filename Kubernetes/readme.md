@@ -38,6 +38,8 @@ https://ansilh.com/
 5. [Hardway Installation](HardwayInstallation2/)
 6. [Kubeadm Installation](KubeadmInstallation/)
 7. [Ansible Installation](AnsibleInstallation/)
+8. [Kubernetes Development](KubernetesDevelopment/)
+9. [HELM](HELM/)
 
 
 

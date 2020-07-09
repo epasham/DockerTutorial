@@ -1,3 +1,21 @@
+### Kubespray
+
+
+SIG Docs is one of the special interest groups within the Kubernetes project, focused on writing, updating, and maintaining the documentation for Kubernetes as a whole. See SIG Docs from the community github repo for more information about the SIG.
+
+https://github.com/kubernetes-sigs/kubespray
+
+https://kubespray.io/#/
+
+https://yusuf-can.com/kubespray-tr/
+https://medium.com/devopsturkiye/7-ad%C4%B1mda-kubernetes-cluster-kurulumu-652bb93f4de4
+
+
+https://www.rjslabs.com/posts/accessing-the-kubernetes-dashboard-from-kubespray/
+https://kubespray.io/#/docs/getting-started?id=accessing-kubernetes-dashboard
+https://kubespray.io/#/docs/roadmap?id=addons-helm-or-native-ansible
+
+
 ### DigitalOcean Ansible ile kuberntes Kurulumu - kubeadm kullanıyor
 
 - https://www.digitalocean.com/community/tutorials/how-to-create-a-kubernetes-cluster-using-kubeadm-on-ubuntu-18-04
