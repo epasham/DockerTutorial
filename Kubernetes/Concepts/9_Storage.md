@@ -1,3 +1,146 @@
+### Intro 
+
+
+- https://vitobotta.com/2019/08/06/kubernetes-storage-openebs-rook-longhorn-storageos-robin-portworx/
+- https://computingforgeeks.com/storage-solutions-for-kubernetes-and-docker/
+- https://www.expedient.com/knowledgebase/blog/2019-08-13-persistent-volume-options-for-kubernetes-storage/
+- https://docs.openebs.io/docs/next/rwm.html
+- https://blog.mayadata.io/openebs/how-to-run-nfs-on-top-of-openebs-jiva
+- https://blog.mayadata.io/openebs/how-to-run-nfs-on-top-of-openebs-jiva
+- https://medium.com/@utkarshmani1997/how-to-run-nfs-on-top-of-openebs-jiva-ca4158e82127
+
+
+
+
+
+#### Storage Drivers
+
+Storage Driversa image ve container üzerindeki verilerin yönetilmesindnme sorumludur.
+
+Burada Docker storage ve volume konusunu iyi anlamak gerekiyor. bunun için [şu linke](../Docker/2_volume.md) bakabilirsiniz. Bu sayfada diğer kaynaklara da linkler bulabilirsiniz.
+
+Docker da bütün bu volume, layered storage, contaner layer vb kavramlardan docker storage driver sorumludur. Bunlardan bazıları
+
+- AUFS ( advanced multi-layered unification filesystem)
+- ZFS
+- BTRFS
+- Device Mapper
+- Overlay
+
+bunlardan hangilerinin kullanılacağı biraz işletim sistemi le ilgilidir. Örneğin Ubuntu da AUFS kullanılır.
+
+[Diğerleri için tıklayınız](https://docs.docker.com/storage/storagedriver/select-storage-driver/#docker-engine---community)
+
+
+
+|Linux distribution| 	Recommended storage drivers| 	Alternative drivers|
+|------------------|-----------------------------|---------------------|
+|Docker Engine - Community on Ubuntu| 	overlay2 or aufs (for Ubuntu 14.04 running on kernel 3.13)| 	overlay, devicemapper, zfs, vfs|
+|Docker Engine - Community on Debian| 	overlay2 (Debian Stretch), aufs or devicemapper (older versions)| 	overlay, vfs|
+Docker Engine - Community on CentOS| 	overlay2| 	overlay, devicemapper, zfs, vfs|
+Docker Engine - Community on Fedora| 	overlay2| 	overlay, devicemapper, zfs, vfs|
+
+desteklenen backing filesystem'ler
+
+|Storage driver| 	Supported backing filesystems|
+|--------------|-------------------------------|
+|overlay2, overlay| 	xfs with ftype=1, ext4|
+|aufs 	|xfs, ext4|
+|devicemapper 	|direct-lvm|
+|btrfs 	|btrfs|
+|zfs 	|zfs|
+|vfs 	|any filesystem|
+
+
+#### Volume Drivers
+
+burada da üçüncü parti bir çok plugin mevcut. 
+
+- Local
+- Azure File Storage
+- Convoy
+- DigitalOcean Block Storage
+- Flocker
+- gce-docker
+- GlusterFS
+- NetApp
+- RexRay
+- VMware vSphere Storage
+
+
+örnek kullanımı
+
+```
+$ docker run -it --name postgres --volumne-driver rexray/ebs --mount src=ebs-vol,target=/var/lib/postgres postgres
+```
+bunun içinde kubernetes CSI kullanır. aynı şekilde network ve container için farklı interface ler kullanılır.
+
+![csi](files/csi.png)
+
+
+bu arada bunların hiç biri kuberntes standardı değil. yani farklı orkestrasyon araçları içinde kullanılabilir. RPC ile haberşleme olur. CSI temel bazı kuralları içinde barındırır ve bunları orkestrasyonların kullanımına açar. Örneğin kuberntes CSI ile haberleşerek sadece bir volume istediğini belirtir CSI implemente ekmiş olan plugin de bunu gerçekleştirir.
+
+
+#### PV/C (Persistant Volume - Persistant Volume Claim)
+
+normalde bir volume mountedildiğinde pod ujn çalıştığı noıde üzerindeki klasör pod a bağlanır. eğer pod diğer node lara da scale edildiyse haliyle bütün noıde larda aynı klasör mount edilmiş olur bu da istenmeyen bir durumdur. Çünki runtime da oluşturulan veriler bu durumda her node da farklı olacaktır. 
+
+bu nedenle kubernetes farklı storage sistemlerini destekler
+
+- NFS
+- GlusterFS
+- Flocker
+- Ceph
+- Scaleio
+- vb
+
+Bu sayede cluster-wide bir storage çözümünü elde etmiş oluruz. 
+
+Öncelikle persistent volume create edilir daha sonra bu volum içinden belli bir alan claim edilerek podlarda kullanılır.
+
+![pv-pvc](files/pv-pvc-yaml.png)
+
+
+burada google cloud kullanılmış stoırage olarak. bu sistemde en büyük problem bu PV oluşturmadan önce google storage'da storage oluşturulmalıdır. bu na static provisioning denir. 
+
+eğer uygulama ihtiyaç duyduğunda storage otomatik olarka oluşturulursa buna da dynamic porvisioning denir. Bunu sağlayan da Storage Class' dır.
+
+![dynamic](files/dynamic.png)
+
+
+bunu sağlayan birçok plugin var 
+
+- AzureFile
+- NFS
+- GlusterFS
+- NFS
+- Local
+- ScaleIO
+- FC
+- ISCSI
+- Flocker
+- CephFS
+- vb
+
+bunların her birinin farklı parametreleri olacaktır. Replkicastion, disk type vb.
+
+
+#### Headless Service
+
+![headless](files/headless.png)
+
+Burada mantık ClusterIP opsiyonunu kaldırmaktır. böylece örneğin statful setlerin master ve worker nodelarına ayrı ayrı dns adresleri ile ulaşm şansı elde etmiş oluruz.
+
+ancak master ve worker poslara resimdeki gibi dns kaydı açılabilmesi için pod spec inde subdomaşn kısmına headless servisin adını yani örneğe göre (mysql-h) ve hostname e de mysql-pod adını yazıyoruz.
+
+
+stateful set oluşturuken de service name a headless service in adını template kısmında da örneğe göre mysql yazarsak sistem otomatik olarak statefulset deki makinlara sırayla rakam vererek podları oluşturup dns kaydı açacaktır.
+
+![headless-dns](files/headless-dns.png)
+
+
+#### Official Kaynaklar 
+
 https://rancher.com/blog/2018/2018-09-20-unexpected-kubernetes-part-1/
 https://kubernetes.io/docs/concepts/storage/persistent-volumes/#lifecycle-of-a-volume-and-claim
 

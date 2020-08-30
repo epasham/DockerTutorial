@@ -1,6 +1,6 @@
-0. Introduction
-1. Componenets
-2. Kubernetes Objects
+0. [Introduction](0_Introduction.md)
+1. [Componenets](1_Componenets.md)
+2. [Kubernetes Objects](2_KubernetesObjects.md)
    1. Object Management
    2. Working Objects
 3. Cluster Architecture

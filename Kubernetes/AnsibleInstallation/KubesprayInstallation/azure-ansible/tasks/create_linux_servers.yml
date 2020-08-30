@@ -1,0 +1,31 @@
+---
+- name: Create a Linux VMs
+  azure_rm_virtualmachine:
+    resource_group: "{{ resource_group_name }}"
+    name: "{{ item.name }}"
+    admin_username: "{{ item.vm_username }}"
+    admin_password: "{{ item.vm_password }}"
+    ssh_password_enabled: true
+    vm_size: Standard_B2s
+    storage_account: "{{ storage_account_name }}"
+    os_type: Linux
+    network_interfaces: "{{ item.network_interface_name }}"
+    state: present
+    image:
+      offer: UbuntuServer
+      publisher: Canonical
+      sku: 18.04-LTS
+      version: latest       
+  async: 3600
+  poll: 0
+  register: task_result
+  tags: 
+    - 7
+  with_items: "{{ linux_servers }}"
+
+- debug: 
+    msg: "{{ task_result }}"
+
+
+
+
