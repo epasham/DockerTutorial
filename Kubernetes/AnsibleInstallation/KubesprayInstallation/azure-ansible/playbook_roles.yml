@@ -1,0 +1,14 @@
+---
+- name: Install NFS server
+  hosts: loadbalancer
+  become: true
+  roles:
+    - nfsserver
+
+
+- name: Install NFS clients
+  hosts: workers
+  become: true
+  roles:
+    - nfsclients
+

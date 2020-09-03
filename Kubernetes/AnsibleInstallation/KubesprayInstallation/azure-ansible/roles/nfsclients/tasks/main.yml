@@ -1,0 +1,28 @@
+- name: update packages
+  raw: sudo apt update
+  register: linux_apt_update
+
+- debug:
+    msg: "{{ linux_apt_update }}"
+
+
+- name: install nfs client
+  apt:
+    name: nfs-common
+    state: present
+    
+
+# dikkat buradaki linux10 yazan kısım localhost.yml deki nfs server ile aynı olmalı
+# https://stackoverflow.com/questions/40230184/how-to-do-multiline-shell-script-in-ansible
+- name: mount disk to nfs clients
+  raw:  > 
+    sudo mkdir /media/diskshared && 
+    echo 'linux10:/media/diskshared /media/diskshared nfs auto,noatime,nolock,bg,nfsvers=4,intr,tcp,actimeo=1800 0 0' | sudo tee -a /etc/fstab && 
+    sudo mount -a
+
+  register: linux_install_nfs_disk_client
+
+
+- debug:
+    msg: "{{ linux_install_nfs_disk_client }}"
+

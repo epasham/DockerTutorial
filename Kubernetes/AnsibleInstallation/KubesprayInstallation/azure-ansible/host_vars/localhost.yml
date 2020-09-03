@@ -4,12 +4,15 @@ subnet_name: sn_kubernetes
 public_ip_for_lb_name: pip_kubernetes
 storage_account_name: sakubernetes2
 security_group_name: sgkubernetes2
+ssh_pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsfE+nmRYqvy8g2yqLa5SFy4r7BqQLcCbc+1fmImxnUwTVTBaHaSHAPYdsv6hJG4LjE8TCEXfHGs1XgjoHIxfmHpocxkuGs1u33gXgdEWNH1SlcfKwANa5HTzu+NXTySNLmW2gW1Opi0+FNl2IN82EGyfyHIcjIT9sUNDqod/y1gvVBpXB9qNIMt1wngDFczt6m5ZnIWb+SuY7sBtKAH449QpST66SOgR9S0WrNeKi5CHDykCochc8gyLvFOQPxXs2unqtt7WqTWYk9nXImQl76vl5bu11GEXVTSelKak3+htV22r5mceat+n9TXepiR5PVvlhLdJZObUw26/obiTE1EYy3gcFnnTdJ11RXOyZYHKTl5HU0Rz6G+TeYJO4H58Wo6TAn+URv2Jmzoo6L1dqWzKW/iKu8LFk4PPPXinmMGSlmIK3p9tkJH1muSn3wna/rHR4OkxoPyQBMacguVLiY76LxNmlCbJ9By74WHjW/StFWJsujoekG2ofFkMPtjM= muratcabuk@muratcabukpc"
+linux_availability_set_name: as_linuxvms
+
 
 linux_servers:
-  - {name: linux10, objective: "load balancer NFS" , vm_username: adminUser, vm_password: Passw@rd1, network_interface_name: linux1ni, public_ip: True}
-  - {name: linux20, objective: "etcd1 master1 worker1", vm_username: adminUser, vm_password: Passw@rd1, network_interface_name: linux2ni, public_ip: False}
-  - {name: linux30, objective: "etcd2 master2 worker2", vm_username: adminUser, vm_password: Passw@rd1, network_interface_name: linux3ni, public_ip: False}
-  - {name: linux40, objective: "etcd3 master3 worker3", vm_username: adminUser, vm_password: Passw@rd1, network_interface_name: linux4ni, public_ip: False}
+  - {name: linux10, objective: "load balancer NFS" , vm_username: adminuser, vm_password: Passw@rd1, network_interface_name: linux1ni, public_ip: True, Disk: True}
+  - {name: linux20, objective: "etcd1 master1 worker1", vm_username: adminuser, vm_password: Passw@rd1, network_interface_name: linux2ni, public_ip: False, Disk: False}
+  - {name: linux30, objective: "etcd2 master2 worker2", vm_username: adminuser, vm_password: Passw@rd1, network_interface_name: linux3ni, public_ip: False, Disk: False}
+  - {name: linux40, objective: "etcd3 master3 worker3", vm_username: adminuser, vm_password: Passw@rd1, network_interface_name: linux4ni, public_ip: False, Disk: False}
 
 # windows_servers:
 #  - {name: linux1, objective: "test" , vm_username:administrator, vm_password: Passw@rd1}

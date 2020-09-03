@@ -1,8 +1,8 @@
 ---
-# - name: Create Infra
-#   hosts: localhost
-#   tasks:
-#     - include: tasks/create_infra.yml
+- name: Create Infra
+  hosts: localhost
+  tasks:
+    - include: tasks/create_infra.yml
 
 
 - name: Create Azure Linux Servers

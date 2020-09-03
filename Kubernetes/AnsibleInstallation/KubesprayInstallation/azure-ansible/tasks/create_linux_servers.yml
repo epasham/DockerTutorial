@@ -3,14 +3,21 @@
   azure_rm_virtualmachine:
     resource_group: "{{ resource_group_name }}"
     name: "{{ item.name }}"
+    # admin_username: "{{ item.vm_username }}"
+    # admin_password: "{{ item.vm_password }}"
+    # ssh_password_enabled: true
     admin_username: "{{ item.vm_username }}"
-    admin_password: "{{ item.vm_password }}"
-    ssh_password_enabled: true
+    ssh_password_enabled: false
+    ssh_public_keys:
+      - path: "/home/{{ item.vm_username }}/.ssh/authorized_keys"
+        key_data: "{{ ssh_pub_key }}"
     vm_size: Standard_B2s
     storage_account: "{{ storage_account_name }}"
+    managed_disk_type: "Standard_LRS"
     os_type: Linux
     network_interfaces: "{{ item.network_interface_name }}"
     state: present
+    started: yes
     image:
       offer: UbuntuServer
       publisher: Canonical
@@ -26,6 +33,27 @@
 - debug: 
     msg: "{{ task_result }}"
 
+
+- name: Create managed linux system disk from page blob for Data disk
+  azure_rm_manageddisk:
+    name: "{{ item.name  }}_disk"
+    resource_group:  "{{ resource_group_name }}"
+    create_option: empty
+    disk_size_gb: 128
+    os_type: linux
+    storage_account_type: Standard_LRS
+    managed_by: "{{ item.name }}"
+    state: present
+  tags: 
+    - 7
+  register: linux_mandisk_result
+  with_items: "{{ linux_servers }}"
+  when: item.Disk == True
+
+- debug:
+    msg: "{{ linux_mandisk_result }}"
+
+#https://adam.younglogic.com/2018/03/ansible-azure-and-managed-disks/
 
 
 

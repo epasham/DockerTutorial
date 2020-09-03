@@ -1,0 +1,29 @@
+- name: update packages
+  raw: sudo apt update
+  register: linux_apt_update
+
+- debug:
+    msg: "{{ linux_apt_update }}"
+
+
+- name: install nfs server
+  apt:
+    name: nfs-kernel-server
+    state: present
+
+
+- name: mount disk to nfs server
+  raw: >
+    sudo umount /dev/sdc1 |
+    sudo mkdir /media/diskshared |  
+    sudo mount /dev/sdc1 /media/diskshared && 
+    sudo chown -R nobody:nogroup /media/diskshared | 
+    echo '/dev/sdc1     /media/diskshared      ext4        defaults      0       0' | sudo tee -a /etc/fstab &&
+    echo '/media/diskshared 10.0.1.0/24(rw,sync,no_subtree_check)' | sudo tee -a /etc/exports &&
+    sudo exportfs -a &&
+    sudo systemctl restart nfs-kernel-server
+
+  register: linux_install_nfs_disk
+
+- debug:
+    msg: "{{ linux_install_nfs_disk }}"

@@ -36,11 +36,15 @@
     msg: "subnet is created. {{sn_result}}"
 
 
+
+
+
+
 - name: Create Public IP for Load Balancer
   azure_rm_publicipaddress:
-      resource_group: "{{ resource_group_name }}"
-      name: "{{ public_ip_for_lb_name }}"
-      allocation_method: Dynamic
+    resource_group: "{{ resource_group_name }}"
+    name: "{{ public_ip_for_lb_name }}"
+    allocation_method: Static
 
 
 - name: Create virtual network inteface with Public IP cards for linux VMs
@@ -79,6 +83,8 @@
       - name: ipconfigs
         primary: True
         public_ip_allocation_method: Dynamic
+        public_ip_name: "{{ item.name }}_{{ item.network_interface_name }}"
+
   register: vni_result
   tags:
     - 4
