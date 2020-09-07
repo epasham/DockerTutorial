@@ -17,7 +17,7 @@
 - name: mount disk to nfs clients
   raw:  > 
     sudo mkdir /media/diskshared && 
-    echo 'linux10:/media/diskshared /media/diskshared nfs auto,noatime,nolock,bg,nfsvers=4,intr,tcp,actimeo=1800 0 0' | sudo tee -a /etc/fstab && 
+    echo "{{ nfs_server_hostname }}:/media/diskshared /media/diskshared nfs auto,noatime,nolock,bg,nfsvers=4,intr,tcp,actimeo=1800 0 0" | sudo tee -a /etc/fstab && 
     sudo mount -a
 
   register: linux_install_nfs_disk_client

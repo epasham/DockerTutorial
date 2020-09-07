@@ -1,0 +1,20 @@
+---
+# - name: Install NFS server
+#   hosts: loadbalancer
+#   become: true
+#   roles:
+#     - nfsserver
+#     - nginx
+
+
+# - name: Install NFS clients
+#   hosts: vmmasters
+#   become: true
+#   roles:
+#     - nfsclients
+
+- name: Install Windows tools
+  hosts: vmwindows
+  roles:
+    - wintools
+

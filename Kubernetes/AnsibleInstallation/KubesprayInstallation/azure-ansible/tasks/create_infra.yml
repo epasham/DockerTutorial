@@ -3,8 +3,7 @@
     name: "{{ resource_group_name }}"
     location: westeurope
     state: present
-  tags: 
-    - 1
+
 
 - name: create a virtual network
   azure_rm_virtualnetwork:
@@ -14,8 +13,6 @@
       - "10.0.0.0/16"
     state: present
   register: vn_result
-  tags: 
-    - 2
 
 - debug:
     msg: "virtual network is created. {{vn_result}}"
@@ -29,71 +26,9 @@
     address_prefix: "10.0.1.0/24"
     state: present    
   register: sn_result
-  tags: 
-    - 3
 
 - debug:
     msg: "subnet is created. {{sn_result}}"
-
-
-
-
-
-
-- name: Create Public IP for Load Balancer
-  azure_rm_publicipaddress:
-    resource_group: "{{ resource_group_name }}"
-    name: "{{ public_ip_for_lb_name }}"
-    allocation_method: Static
-
-
-- name: Create virtual network inteface with Public IP cards for linux VMs
-  azure_rm_networkinterface:
-    resource_group: "{{ resource_group_name }}"
-    name: "{{ item.network_interface_name }}"
-    virtual_network: "{{ virtual_network_name }}"
-    subnet: "{{ subnet_name }}"
-    security_group_name: "{{ security_group_name }}"
-    state: present
-    ip_configurations:
-      - name: ipconfigs
-        primary: True
-        public_ip_allocation_method: Static
-        public_ip_name: "{{ public_ip_for_lb_name }}"    
-  register: vni_result_public_ip
-  tags:
-    - 4
-  with_items: "{{ linux_servers }}"
-  when: item.public_ip == True
-
-
-- debug:
-    msg: "virtual network inteface with public ip is created for linux. {{ vni_result_public_ip }}"
-
-
-- name: Create virtual network inteface cards for linux VMs
-  azure_rm_networkinterface:
-    resource_group: "{{ resource_group_name }}"
-    name: "{{ item.network_interface_name }}"
-    virtual_network: "{{ virtual_network_name }}"
-    subnet: "{{ subnet_name }}"
-    security_group_name: "{{ security_group_name }}"
-    state: present
-    ip_configurations:
-      - name: ipconfigs
-        primary: True
-        public_ip_allocation_method: Dynamic
-        public_ip_name: "{{ item.name }}_{{ item.network_interface_name }}"
-
-  register: vni_result
-  tags:
-    - 4
-  with_items: "{{ linux_servers }}"
-  when: item.public_ip == False
-
-
-- debug:
-    msg: "virtual network inteface is created for linux. {{ vni_result }}"
 
 
 - name: create a storage account
@@ -104,9 +39,6 @@
     kind: StorageV2
     state: present
   register: sa_result
-  tags: 
-    - 5
 
-    
 - debug:
     msg: "storage account is created. {{ sa_result }}"

@@ -1,0 +1,10 @@
+---
+- name: test
+  hosts: localhost
+  tasks:
+    - name: test
+      debug: 
+        msg: "{% for item in linux_servers  | rejectattr(\"name\", \"equalto\", nfs_server_hostname)  %} {{ item.objective }} {% endfor %}"
+
+# | selectattr("name", "equalto", nfs_server_hostname
+# | rejectattr("name", "equalto", nfs_server_hostname

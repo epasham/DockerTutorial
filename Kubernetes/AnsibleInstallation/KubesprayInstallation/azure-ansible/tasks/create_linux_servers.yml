@@ -26,8 +26,6 @@
   async: 3600
   poll: 0
   register: task_result
-  tags: 
-    - 7
   with_items: "{{ linux_servers }}"
 
 - debug: 
@@ -48,7 +46,7 @@
     - 7
   register: linux_mandisk_result
   with_items: "{{ linux_servers }}"
-  when: item.Disk == True
+  when: item.NFSDisk == True
 
 - debug:
     msg: "{{ linux_mandisk_result }}"

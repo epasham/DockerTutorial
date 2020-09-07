@@ -1,0 +1,19 @@
+stream {
+    upstream backend {
+
+#		{% for item in linux_servers  | rejectattr(\"name\", \"equalto\", nfs_server_hostname)  %}
+#		server "{{ item.name }}":6443; 
+#		{% endfor %}
+
+		server linux20:6443;
+		server linux30:6443;
+		server linux40:6443;
+
+   }
+
+    server {
+        listen 6443;
+        proxy_pass backend;
+    }
+}
+

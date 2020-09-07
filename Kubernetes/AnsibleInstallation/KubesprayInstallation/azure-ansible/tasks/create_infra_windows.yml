@@ -1,0 +1,23 @@
+- name: Create virtual network inteface cards for Windows VMs
+  azure_rm_networkinterface:
+    resource_group: "{{ resource_group_name }}"
+    name: "{{ item.network_interface_name }}"
+    virtual_network: "{{ virtual_network_name }}"
+    subnet: "{{ subnet_name }}"
+    security_group_name: "{{ security_group_name }}"
+    state: present
+    ip_configurations:
+      - name: ipconfigs
+        primary: True
+        public_ip_allocation_method: Dynamic
+        public_ip_name: "{{ item.name }}_{{ item.network_interface_name }}"
+
+  register: vni_result
+  with_items: "{{ windows_servers }}"
+  when: item.static_public_ip == False
+
+
+- debug:
+    msg: "virtual network inteface is created for linux. {{ vni_result }}"
+
+
