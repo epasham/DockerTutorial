@@ -19,8 +19,6 @@
         public_ip_allocation_method: Static
         public_ip_name: "{{ public_ip_for_lb_name }}"    
   register: vni_result_public_ip
-  tags:
-    - 4
   with_items: "{{ linux_servers }}"
   when: item.static_public_ip == True
 

@@ -42,8 +42,6 @@
     storage_account_type: Standard_LRS
     managed_by: "{{ item.name }}"
     state: present
-  tags: 
-    - 7
   register: linux_mandisk_result
   with_items: "{{ linux_servers }}"
   when: item.NFSDisk == True

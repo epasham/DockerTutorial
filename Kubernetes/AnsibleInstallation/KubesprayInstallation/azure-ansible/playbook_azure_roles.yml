@@ -13,8 +13,16 @@
 #   roles:
 #     - nfsclients
 
-- name: Install Windows tools
+# - name: Install Windows tools
+#   hosts: vmwindows
+#   roles:
+#     - wintools
+
+- name: Install Docker
   hosts: vmwindows
   roles:
-    - wintools
+    - winswarm
+#    - wintools
+
+
 

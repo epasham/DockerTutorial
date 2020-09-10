@@ -9,6 +9,8 @@ ansible_ssh_private_key_file_path: /home/muratcabuk/Projects/Github/DockerTutori
 linux_availability_set_name: as_linuxvms
 nfs_server_hostname: linux10
 shared_folder_server_hostname: windows10
+swarm_advertise_addr: {ipaddr: 10.0.0.4, name: windows10}
+windows_python_version: 3.8.2
 linux_servers:
   - {name: linux10, objective: "load balancer NFS" , vm_username: adminuser, vm_password: Passw@rd1, network_interface_name: linux1ni, static_public_ip: True, NFSDisk: True}
   - {name: linux20, objective: "etcd1 master1 worker1", vm_username: adminuser, vm_password: Passw@rd1, network_interface_name: linux2ni, static_public_ip: False, NFSDisk: False}

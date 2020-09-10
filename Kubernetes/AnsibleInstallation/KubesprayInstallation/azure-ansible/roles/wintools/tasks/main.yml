@@ -1,19 +1,68 @@
-- name: Get whoami information
-  win_whoami:
+# - name: Get whoami information
+#   win_whoami:
+
+# chocolatey özellikle belirli bir versyon kurmak için ps1 dosyasında yazdığı üzere env değişkenlerine chocolateyVersion ekliyoruz
+- name: install Chocolatey and reload environment variables
+  win_shell: |
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User"); 
+    $env:chocolateyVersion = '0.10.15';
+    $version = choco -V;
+    if(!($version -eq "0.10.15")) { Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) } else {echo "chocolatey zaten kurulu"};
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+  args:
+    chdir: D:\
+    executable: powershell
+  register: install_chocolatey_result
+
+- debug:
+    msg: "{{ install_chocolatey_result }}"
 
 - name: Ensure 7-Zip is installed via Chocolatey
   win_chocolatey:
     name: 7zip
     state: present
 
-- name: Run a powershell
+- name: download python
   win_shell: |
-    New-Item -Path C:\temp -ItemType Directory
-    $path_info = Get-Item -Path C:\temp
-    $path_info.FullName
+    if(!(Test-Path D:\python-{{ windows_python_version }}-amd64.exe)){Invoke-WebRequest -Uri "https://www.python.org/ftp/python/{{ windows_python_version }}/python-{{ windows_python_version }}-amd64.exe" -OutFile "D:\python-{{ windows_python_version }}-amd64.exe"}
   args:
     chdir: C:\
     executable: powershell
+  register: download_python_result
+
+- debug:
+    msg: "{{ download_python_result }}"
+
+
+# https://www.server-world.info/en/note?os=Windows_Server_2019&p=python
+- name: install python and reload environment variables
+  win_shell: |
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User"); 
+    $version = python --version;
+    if(!($version -eq "Python {{ windows_python_version }}")){.\python-{{ windows_python_version }}-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0}else{echo "python zaten kurulu"};
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+  args:
+    chdir: D:\
+    executable: powershell
+  register: install_python_result
+
+- debug:
+    msg: "{{ install_python_result }}"
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 

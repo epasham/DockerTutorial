@@ -8,3 +8,8 @@ $ ansible-playbook playbook.yml
 
 
 ```
+
+
+windows ansible için kaynak
+
+https://www.jonathanmedd.net/2019/09/ansible-windows-and-powershell-the-basics-introduction.html
