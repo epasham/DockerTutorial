@@ -17,13 +17,13 @@ bin_dir: /usr/local/bin
 
 
 ## External LB example config
-## apiserver_loadbalancer_domain_name: "elb.some.domain"
-# loadbalancer_apiserver:
-#   address: 1.2.3.4
-#   port: 1234
+apiserver_loadbalancer_domain_name: "lb.muratcabuk.com"
+loadbalancer_apiserver:
+  address: 10.0.1.4
+  port: 8383
 
 ## Internal loadbalancers for apiservers
-# loadbalancer_apiserver_localhost: true
+loadbalancer_apiserver_localhost: false
 # valid options are "nginx" or "haproxy"
 # loadbalancer_apiserver_type: nginx # valid values "nginx" or "haproxy"
 
@@ -84,7 +84,7 @@ loadbalancer_apiserver_healthcheck_port: 8081
 # ignore_assert_errors: false
 
 ## The read-only port for the Kubelet to serve on with no authentication/authorization. Uncomment to enable.
-# kube_read_only_port: 10255
+kube_read_only_port: 10255
 
 ## Set true to download and cache container
 # download_container: true

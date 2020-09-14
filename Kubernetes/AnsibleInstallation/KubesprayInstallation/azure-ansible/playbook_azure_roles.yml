@@ -1,28 +1,35 @@
 ---
-# - name: Install NFS server
-#   hosts: loadbalancer
-#   become: true
-#   roles:
-#     - nfsserver
-#     - nginx
+- name: all workers
+  become: true
+  hosts: vmworkers
+  become: true
+  roles:
+    - allworkers
+ 
+- name: Install NFS server
+  hosts: loadbalancer
+  become: true
+  roles:
+    - nfsserver
+    - nginx
 
 
-# - name: Install NFS clients
-#   hosts: vmmasters
-#   become: true
-#   roles:
-#     - nfsclients
+- name: Install NFS clients
+  hosts: vmmasters
+  become: true
+  roles:
+    - nfsclients
 
 # - name: Install Windows tools
 #   hosts: vmwindows
 #   roles:
 #     - wintools
 
-- name: Install Docker
-  hosts: vmwindows
-  roles:
-    - winswarm
-#    - wintools
+# - name: Install Docker
+#   hosts: vmwindows
+#   roles:
+#     - winswarm
+#     - wintools
 
 
 

@@ -347,3 +347,49 @@ spec:
       storage: 30Gi
 ```
 
+
+
+
+### Tavsiyeler
+
+
+bunların hepssinin cluster wise pluginleri mevcut ayrıca dynamic provisioner olarak da kullanılabilir.
+
+
+- Minio
+- NFS
+- Ceph
+- GlusterFS
+
+
+
+
+### NFS PersistentVolume
+
+https://github.com/kubernetes/examples/tree/master/staging/volumes/nfs
+
+
+
+https://medium.com/@myte/kubernetes-nfs-and-dynamic-nfs-provisioning-97e2afb8b4a9
+
+https://www.youtube.com/watch?v=to14wmNmRCI
+
+https://www.youtube.com/watch?v=AavnQzWDTEk
+
+https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client
+
+https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner
+
+
+
+
+
+
+
+
+
+
+
+
+
+

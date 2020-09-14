@@ -1,0 +1,21 @@
+- name: swap off durumna getir
+  raw:  > 
+    sudo swapoff -a  
+  register: linux_swapoff
+
+
+- debug:
+    msg: "{{ linux_swapoff }}"
+
+
+- name: stroage folder oluştur local persistance için
+  raw:  | 
+    sudo mkdir /home/storage;
+    sudo chmod -R 777 /home/storage
+
+  register: storage_persistance
+  when: 
+
+
+- debug:
+    msg: "{{ storage_persistance }}"

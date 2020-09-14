@@ -1,0 +1,6 @@
+- name: restart nfs-kernel-server
+  service:
+    name: nfs-kernel-server
+    state: restarted
+  listen: "restart nfs-kernel-server" 
+# listen kısmı birden fazla handler a yazılır ve burayı tetikleyecek notify kısmına listen da yazzan metin yazılırsa hepsi tektiklenmiş olur.   

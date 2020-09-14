@@ -14,6 +14,7 @@
 
   register: vni_result
   with_items: "{{ windows_servers }}"
+#  strategy: free  # bu satır vm ler create edilirken birbirlerini beklemmesini ifade ediyor yani parallel çalıştırıyor.
   when: item.static_public_ip == False
 
 

@@ -9,6 +9,9 @@ Load balancer için ayaraladığmız makinamızın hostname'ini nginxlb, ip'si i
 
 Kurulumu Ubuntu üzerinden anlayıtor olcağım ancak tek fark paket yönteicisi sonuçta diğer linux dağıtımlarından. Kurulum dışındaki ayarlar zaten hepsinde aynı şekilde.
 
+
+https://www.ovh.com/blog/getting-external-traffic-into-kubernetes-clusterip-nodeport-loadbalancer-and-ingress/
+
 ```
 $ sudo apt install -y nginx
 # version check ediyoruz

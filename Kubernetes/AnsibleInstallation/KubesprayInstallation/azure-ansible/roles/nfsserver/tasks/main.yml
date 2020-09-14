@@ -21,8 +21,9 @@
     sudo chmod -R 777 /media/diskshared |
     echo "/dev/sdc1     /media/diskshared      ext4        defaults      0       0" | sudo tee -a /etc/fstab &&
     echo "/media/diskshared 10.0.1.0/24(rw,sync,no_subtree_check)" | sudo tee -a /etc/exports &&
-    sudo exportfs -a &&
-    sudo systemctl restart nfs-kernel-server
+    sudo exportfs -a
+  notify: 
+    - "restart nfs-kernel-server"
 
   register: linux_install_nfs_disk
 

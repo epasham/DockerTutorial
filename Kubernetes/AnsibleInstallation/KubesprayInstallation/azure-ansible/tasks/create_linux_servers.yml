@@ -26,6 +26,11 @@
   async: 3600
   poll: 0
   register: task_result
+ #  strategy: free  # bu satır vm ler create edilirken birbirlerini beklemmesini ifade ediyor yani parallel çalıştırıyor.
+  # forks: ile bir task içinde  aynı anda kaç connection yapılcağı belirlenebilir (bağlantı yapılması ile kaç node da iş yapabilc eği ayrı konular)
+  # serial: ile bir çalışmada (run execution) kaç makinadada iş  yapılcağını belirtir.
+  # örnek : bu sayfanın en altında
+  # https://medium.com/devops-srilanka/difference-between-forks-and-serial-in-ansible-48677ebe3f36
   with_items: "{{ linux_servers }}"
 
 - debug: 
@@ -51,5 +56,16 @@
 
 #https://adam.younglogic.com/2018/03/ansible-azure-and-managed-disks/
 
+
+
+# Suppose you have 4 nodes (nodeA, nodeB, nodeC, nodeD) in inventory, 2 tasks in playbook, forks =5 (by default)
+
+#     First task process on all 4 nodes (nodeA, nodeB, nodeC, nodeD)simultaneously, then Second task process on all 4 nodes (nodeA, nodeB, nodeC, nodeD) simultaneously. If we assume processing time for each task is 5 seconds;
+
+#     Time take for 1st task = 5s (nodeA, nodeB, nodeC, nodeD)
+
+#     Time take for 2nd task = 5s (nodeA, nodeB, nodeC, nodeD)
+
+#     Total time taken for playbook = 10s
 
 

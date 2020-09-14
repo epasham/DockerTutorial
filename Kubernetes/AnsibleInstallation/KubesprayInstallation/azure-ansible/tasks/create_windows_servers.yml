@@ -22,6 +22,7 @@
   async: 3600
   poll: 0
   register: task_result
+  strategy: free  # bu satır vm ler create edilirken birbirlerini beklemmesini ifade ediyor yani parallel çalıştırıyor.
   with_items: "{{ windows_servers }}"
 
 
