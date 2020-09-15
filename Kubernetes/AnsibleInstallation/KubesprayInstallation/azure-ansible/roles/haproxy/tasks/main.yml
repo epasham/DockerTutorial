@@ -20,10 +20,10 @@
   blockinfile:
     path: /etc/haproxy/haproxy.cfg
     block: |
-      item
+      {{item}}
     marker: "# {mark} ANSIBLE MANAGED BLOCK " # {mark} yazan yeri silmeyiniz.
-    with_file:
-      - "./templates/haproxy.cfg.j2"
+  with_file:
+    - "./templates/haproxy.cfg.j2"
 
 - name: Start service haproxy
   service:

@@ -1,16 +1,15 @@
 ---
-- name: all workers
-  become: true
-  hosts: vmworkers
-  become: true
-  roles:
-    - allworkers
+# - name: all workers
+#   become: true
+#   hosts: vmworkers
+#   roles:
+#     - allworkers
  
 - name: Install NFS server
   hosts: loadbalancer
   become: true
   roles:
-    - nfsserver
+  #  - nfsserver
     - haproxy
     - ansible
 #    - nginx

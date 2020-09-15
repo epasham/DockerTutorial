@@ -44,6 +44,10 @@
   raw: >
     mkdir /home/adminuser/projects &&
     cd /home/adminuser/projects &&
-    git clone https://github.com/muratcabuk/DockerTutorial.git
+    git clone https://github.com/muratcabuk/DockerTutorial.git &&
+    eval `ssh-agent -s` &&
+    sudo chmod 666 ssh-add ~/projects/DockerTutorial/Kubernetes/AnsibleInstallation/KubesprayInstallation/azure-ansible/keys/id_rsa &&
+    ssh-add ~/projects/DockerTutorial/Kubernetes/AnsibleInstallation/KubesprayInstallation/azure-ansible/keys/id_rsa
+
   
 

@@ -253,6 +253,24 @@ ansible-playbook -i inventory/mycluster/inventory.ini --become --become-user=roo
 
 
 
+6. test ekmek için kubernetes dashboard a ulaşmak
+
+öncelikle aşağıdaki komutları çalıştıyoruz.
+
+bu komuıtlar dashboard için bizer token üretecek ve böylece giriş yapabilceğiz.
+
+
+```
+
+kubectl create -f contrib/misc/clusteradmin-rbac.yml
+kubectl -n kube-system describe secret kubernetes-dashboard-token | grep 'token:' | grep -o '[^ ]\+$'
+
+```
+
+
+bu linkle de sayfamıza ulaşabiliriz.
+
+https://10.0.20.101:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
 
 
 
@@ -264,7 +282,7 @@ https://banzaicloud.com/blog/backyards-ingress/
 
 
 
-### Kubespray ipuçları
+### Kubespray ipuçları ve hatlar için
 
 resetleme yaparken yada tekrar ansible-playbook açlıştırıldığında inatla biryerlede takılıyorsa alltaki komutlar kullanılabilir
 
@@ -277,6 +295,8 @@ ansible-playbook --flush-cache -i inventory/mycluster/inventory.ini cluster.yml 
 
 ```
 
+
+https://medium.com/@sarangrana/getting-started-with-kubernetes-part-3-kubespray-on-premise-installation-guide-90194f08be4e
 
 
 

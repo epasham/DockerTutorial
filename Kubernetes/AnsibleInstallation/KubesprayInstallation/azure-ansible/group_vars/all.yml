@@ -1,3 +1,4 @@
+ansible_python_interpreter: /usr/bin/python3
 resource_group_name: rg_kubernetes
 virtual_network_name: vn_kubernetes
 subnet_name: sn_kubernetes
