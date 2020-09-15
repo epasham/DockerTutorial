@@ -1,0 +1,11 @@
+listen kubernetes-apiserver-https
+  bind 10.0.1.4:8383
+  mode tcp
+  option log-health-checks
+  timeout client 3h
+  timeout server 3h
+  server master1 10.0.1.5:6443 check check-ssl verify none inter 10000
+  server master2 10.0.1.6:6443 check check-ssl verify none inter 10000
+  server master1 10.0.1.7:6443 check check-ssl verify none inter 10000
+
+  balance roundrobin

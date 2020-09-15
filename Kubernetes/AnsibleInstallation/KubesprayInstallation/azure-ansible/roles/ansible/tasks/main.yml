@@ -1,0 +1,13 @@
+- name: update packages
+  raw: sudo apt update
+  register: linux_apt_update
+
+- debug:
+    msg: "{{ linux_apt_update }}"
+
+
+- name: install ansible
+  apt:
+    name: ansible=2.9
+    state: present
+

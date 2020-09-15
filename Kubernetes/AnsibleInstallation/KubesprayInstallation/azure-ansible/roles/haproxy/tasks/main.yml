@@ -1,0 +1,33 @@
+- name: update packages
+  raw: sudo apt update
+  register: linux_apt_update
+
+- debug:
+    msg: "{{ linux_apt_update }}"
+
+
+- name: install nginx server
+  apt:
+    name: haproxy
+    state: present
+
+- name: Stop service haproxy, if started
+  service:
+    name: haproxy
+    state: stopped
+
+- name: Add conf to haproxy.conf
+  blockinfile:
+    path: /etc/haproxy/haproxy.cfg
+    block: |
+      item
+    marker: "# {mark} ANSIBLE MANAGED BLOCK " # {mark} yazan yeri silmeyiniz.
+    with_file:
+      - "./templates/haproxy.cfg.j2"
+
+- name: Start service haproxy
+  service:
+    name: haproxy
+    state: started
+
+

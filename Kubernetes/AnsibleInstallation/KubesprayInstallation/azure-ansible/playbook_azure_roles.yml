@@ -11,7 +11,10 @@
   become: true
   roles:
     - nfsserver
-    - nginx
+    - haproxy
+    - ansible
+#    - nginx
+
 
 
 - name: Install NFS clients
@@ -20,6 +23,7 @@
   roles:
     - nfsclients
 
+# ----------------------------------------sakın silmeyin windows swarm için lazım
 # - name: Install Windows tools
 #   hosts: vmwindows
 #   roles:

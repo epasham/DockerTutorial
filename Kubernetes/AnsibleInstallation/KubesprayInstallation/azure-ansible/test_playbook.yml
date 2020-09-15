@@ -20,3 +20,14 @@
       when: inventory_hostname == "windows10" 
 # | selectattr("name", "equalto", nfs_server_hostname
 # | rejectattr("name", "equalto", nfs_server_hostname
+
+
+
+- name: display multiple file contents
+  hosts: localhost
+  tasks:
+    - name: test
+      debug: 
+        msg: item
+      with_file:
+        - "./roles/haproxy/templates/haproxy.cfg.j2"
