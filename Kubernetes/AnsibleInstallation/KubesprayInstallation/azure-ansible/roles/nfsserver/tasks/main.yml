@@ -12,6 +12,7 @@
     state: present
 
 
+    # nfs tanımnlanırken normalde 10.0.1.0/24 bloğuna izin verilmeli ancak podlar farklı ip den  gelceği için şimdilik * koyup hepsine izin verdik
 - name: mount disk to nfs server
   raw: >
     sudo umount /dev/sdc1 |
@@ -20,7 +21,7 @@
     sudo chown -R nobody:nogroup /media/diskshared |
     sudo chmod -R 777 /media/diskshared |
     echo "/dev/sdc1     /media/diskshared      ext4        defaults      0       0" | sudo tee -a /etc/fstab &&
-    echo "/media/diskshared 10.0.1.0/24(rw,sync,no_subtree_check)" | sudo tee -a /etc/exports &&
+    echo "/media/diskshared *(rw,sync,no_subtree_check,insecure)" | sudo tee -a /etc/exports &&
     sudo exportfs -a
   notify: 
     - "restart nfs-kernel-server"

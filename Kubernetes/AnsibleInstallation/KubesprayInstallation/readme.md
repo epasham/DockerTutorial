@@ -260,18 +260,79 @@ ansible-playbook -i inventory/mycluster/inventory.ini --become --become-user=roo
 bu komuıtlar dashboard için bizer token üretecek ve böylece giriş yapabilceğiz.
 
 
+
+- https://github.com/kubernetes/dashboard/blob/master/README.md#getting-started
+- https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+
+
+
 ```
 
-kubectl create -f contrib/misc/clusteradmin-rbac.yml
-kubectl -n kube-system describe secret kubernetes-dashboard-token | grep 'token:' | grep -o '[^ ]\+$'
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.4/aio/deploy/recommended.yaml
+# proxy yi açlıştırıyorsu zve daha sonra alttaki linkleri kullanrak sayfayı açıyoruz.
+$ kubectl proxy
+
+
+# token almak için öncelikle uservice account oluşturuyoruz
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+EOF
+
+
+# daha sonra role binding yapıyoruz
+
+$ cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+EOF
+
+
+# daha sonra  token alıyoruz
+
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+
+```
+
+bu komutun sonucu şuna benzer birşey olacak
+
+```
+
+Name:         admin-user-token-hmbrn
+Namespace:    kubernetes-dashboard
+Labels:       <none>
+Annotations:  kubernetes.io/service-account.name: admin-user
+              kubernetes.io/service-account.uid: 7474cf92-f6ce-4e7a-9c7d-9284f7a48194
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IkJaLW5DaDRPWEY0RXU0NGVOU0pUVEJmR2ViNWNPaDZhMnFiN0lXd2ROSEUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWhtYnJuIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI3NDc0Y2Y5Mi1mNmNlLTRlN2EtOWM3ZC05Mjg0ZjdhNDgxOTQiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZXJuZXRlcy1kYXNoYm9hcmQ6YWRtaW4tdXNlciJ9.OE2F9vW4f9NB-qHnP53-H6p3CQQMSslqyDa4b9IdomoUcVNoNVnGR7YNEHNrKP_N7ZhV57XSML4oU2KJW100Qg-XU8AqJELYINifzc5siJY0N7bTIGJtlSoiqLniKFZ2hl0i72xQVZ8YEPaxGAsbotNr7vyI2pKYovnYhh1fyrMNiClNO6eYv3Pc3f5PBJyL1fXQSRUeF9RNfkInzhoOHvzvMAQjldlBPaE5DyWjgHPW64MDsazIRCwilH_jnloEB440B4VQPhekS4wZZqxCBa5koq4ImNtIeeaDuaPgfiFY_0K599M997qY83aasfEejnkYm4gk8fvbJGw1ictbkQ
+ca.crt:     1025 bytes
+namespace:  20 bytes
 
 ```
 
 
-bu linkle de sayfamıza ulaşabiliriz.
 
-https://10.0.20.101:6443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
 
+
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
 
 

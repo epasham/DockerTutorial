@@ -381,6 +381,22 @@ https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client
 https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner
 
 
+- __Videolar__
+
+https://www.youtube.com/watch?v=to14wmNmRCI
+
+https://www.youtube.com/watch?v=AavnQzWDTEk
+
+https://www.youtube.com/watch?v=r_ZEpPTCcPE
+
+
+
+https://www.youtube.com/watch?v=I9GMUn15Nes
+
+
+https://www.youtube.com/watch?v=I9GMUn15Nes&list=PL34sAs7_26wNBRWM6BDhnonoA5FMERax0&index=20
+
+
 
 
 

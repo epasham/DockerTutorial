@@ -1,4 +1,11 @@
 
+şu linklere mutlaka bakılmalı
+
+https://oteemo.com/2019/09/19/kubernetes-networking-and-services-101/
+
+https://oteemo.com/2020/01/16/ingress-102-kubernetes-ingress-implementation-options/
+
+
 ### Intro
 
 IPAM = Ip Access Management
@@ -487,12 +494,14 @@ Ingress için birçok seçenek var.
 
 Ingress için bir çözüm kurduğumuzda ingress controller kurmuş oluyoruz. Daha sonra yazdığımız kurallar ingress resources olmuş oluyor.
 
+https://medium.com/better-programming/how-to-expose-your-services-with-kubernetes-ingress-7f34eb6c9b5a
 
 
 
 
 
-### Kuhernets Networking
+
+### Kubernetes Networking
 
 https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/ (kesin bakılmalı)
 
@@ -614,6 +623,9 @@ spec:
 If you create it using kubectl apply -f you should be able to view the state of the Ingress you just added:
 
 kubectl get ingress test-ingress
+
+
+https://medium.com/better-programming/how-to-expose-your-services-with-kubernetes-ingress-7f34eb6c9b5a
 
 
 
