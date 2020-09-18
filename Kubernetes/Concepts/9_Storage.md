@@ -349,7 +349,12 @@ spec:
 
 
 
+### örnek uygulama için
 
+
+
+
+https://github.com/muratcabuk/DockerTutorial/tree/master/Kubernetes/AnsibleInstallation/KubesprayInstallation/PersistantVolume
 ### Tavsiyeler
 
 

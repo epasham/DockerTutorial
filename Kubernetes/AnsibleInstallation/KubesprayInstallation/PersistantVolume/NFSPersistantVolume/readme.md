@@ -1,11 +1,5 @@
 ### NFS Persistent Volume in Kubernetes Cluster
 
-https://www.youtube.com/watch?v=to14wmNmRCI
-
-
-burada hikaye aslında şu şerkilde işliyor.
-
-
 ![pv pvc](../files/pv_pvc.png)
 
 - **persistant volume PV**: sistemden belli bir alanın kubernetes e tanımlanması
@@ -132,10 +126,12 @@ $ mount | grep disk
 nfs serverda media/diskshared altıne bir index.html koyup bunu 10.0.16 (node2) sunucud-sunda curl http://10.233.96.9  ile çağıracak olursak sayfa içeriğini görebiliriz.
 
 
-PVC de claimmiz default REtain olark ayarlandığı için bu deployment ı sisek dahi index.html kalacaktır tekrar ayağa kaldırdığımızda silinmeyen bu index.html de görünür olacaktır.
+PVC de claimmiz default Retain olark ayarlandığı için bu deployment ı sisek dahi index.html kalacaktır tekrar ayağa kaldırdığımızda silinmeyen bu index.html de görünür olacaktır.
 
 
 peki replikayı 3 çıkartırsak ne olur acaba ?
+
+sonuç: 3 node da da yukardakiyle aynı sonucu görürüz. yani 3 node içindeki nginx-deploy servisi için bir mount işlemi gerçekleşmiş olur. hepside aynı alana yazma ve okuma hakkına sahiptirler.
 
 
 
@@ -153,6 +149,8 @@ https://www.youtube.com/watch?v=I9GMUn15Nes
 
 ### Resources
 
+- https://www.youtube.com/watch?v=to14wmNmRCI
+- https://github.com/kubernetes/examples/tree/master/staging/volumes/nfs
 - https://www.youtube.com/watch?v=to14wmNmRCI
 - https://www.youtube.com/watch?v=I9GMUn15Nes
 - https://www.youtube.com/watch?v=I9GMUn15Nes&list=PL34sAs7_26wNBRWM6BDhnonoA5FMERax0&index=20

@@ -19,3 +19,6 @@
 14. Scheduling and Eviction
 15. Cluster Administrator
 16. API Priority and Fairness
+
+
+https://www.youtube.com/watch?v=jgmdY73RF6w&list=PLMPZQTftRCS8Pp4wiiUruly5ODScvAwcQ

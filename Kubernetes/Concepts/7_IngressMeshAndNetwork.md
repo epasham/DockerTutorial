@@ -1,6 +1,10 @@
 
 şu linklere mutlaka bakılmalı
 
+
+https://github.com/muratcabuk/DockerTutorial/tree/master/Kubernetes/AnsibleInstallation/KubesprayInstallation/istio
+
+
 https://oteemo.com/2019/09/19/kubernetes-networking-and-services-101/
 
 https://oteemo.com/2020/01/16/ingress-102-kubernetes-ingress-implementation-options/
