@@ -5,6 +5,8 @@ Bu bölüm temel olarak Kubernmetes Resmi sitesinin Concepts başlılı sayafas�
 
 
 
+kensin bakılmalı : https://medium.com/@berkkarabacak/kubernetes-nedir-kubernetes-konseptleri-949553ca33e
+
 
 - imperative 
 

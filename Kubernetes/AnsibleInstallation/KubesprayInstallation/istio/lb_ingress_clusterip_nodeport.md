@@ -35,7 +35,7 @@ curl http://localhost:8080/api/
 
 
 
-proxy olmadan bğlanmak için token a ihtiyacımız olacak.
+proxy olmadan bağlanmak için token a ihtiyacımız olacak.
 
 
 ```

@@ -1,0 +1,28 @@
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: deployment-manager-testnamespace-binding
+  namespace: testnamespace
+subjects:
+- kind: User
+  name: jenkins
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: deployment-manager-testnamespace
+  apiGroup: ""
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: deployment-manager-default-binding
+  namespace: default
+subjects:
+- kind: User
+  name: jenkins
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: deployment-manager-default
+  apiGroup: ""

@@ -19,6 +19,8 @@
 14. Scheduling and Eviction
 15. Cluster Administrator
 16. API Priority and Fairness
+17. Authentication Authorization
+18. Rolling Updates
 
 
 https://www.youtube.com/watch?v=jgmdY73RF6w&list=PLMPZQTftRCS8Pp4wiiUruly5ODScvAwcQ
