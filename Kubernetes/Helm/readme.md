@@ -10,13 +10,7 @@ HELM' de iki adet komponent bulunmaktadır.
 
 Helm’ in basitlik kazandırdığı bir diğer konu da aslında yukarıda bahsettiğimiz “Lifecycle” mevzusu , yani Helm bize ilgili uygulamanın oluşturulmasından , güncellenmesine, herhangi bir problem durumunda ilgili versiyona rollback edilmesine kadar ki tüm süreçte destek olur.
 
-### HELM vs Kustomize
-
-
-
-
-
-
+### Helm vs Kustomize
 
 
 __Helm__
@@ -59,18 +53,6 @@ Kustomize Örneklerinin bulundu resmi web sayfası : https://github.com/kubernet
 detaylı kustomize örneği : https://kubectl.docs.kubernetes.io/pages/examples/kustomize.html
 
 ikisinin de (Helm ve Kustomize) temel amacı aslında karmaşklığı yönetmektir. Ancak birbirlerine rakip değiller.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

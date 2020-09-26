@@ -1,0 +1,1 @@
+https://docs.min.io/docs/deploy-minio-on-kubernetes.html

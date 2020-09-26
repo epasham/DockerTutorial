@@ -13,7 +13,7 @@
 - [Examples](Swarm/examples)
 
 # Kubernetes
-- [Kubernetes Concept](Kubernetes/Concept)
+- [Kubernetes Concept](Kubernetes/Concepts)
 - [Kubeadm Installation](Kubernetes/KubeadmInstallation)
 - [Ansible Installation](Kubernetes/AnsibleInstallation)
  - [Kubespray Installation](Kubernetes/AnsibleInstallation/KubesprayInstallation)
@@ -29,6 +29,7 @@
 - [Nginx-Ingress](Kubernetes/Nginx-Ingress)
 - [Istio](Kubernetes/Istio)
 - [Persistant Volume](Kubernetes/PersistantVolume)
+- [Etcd](Kubernetes/Etcd)
 - [Troubleshooting](Kubernetes/Troubleshooting)
 - [References](References)
 - [Kubernetes Examples](KubernetesExamples)

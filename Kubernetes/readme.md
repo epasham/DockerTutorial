@@ -31,16 +31,29 @@ https://ansilh.com/
 
 İç Kaynaklar
 
-1. [Concepts](Concepts/)
-2. [References](References/)
-3. [Tools](KubernetesTools/)
-4. [Hardway Installation](HardwayInstallation/)
-5. [Hardway Installation](HardwayInstallation2/)
-6. [Kubeadm Installation](KubeadmInstallation/)
-7. [Ansible Installation](AnsibleInstallation/)
-8. [Kubernetes Development](KubernetesDevelopment/)
-9. [HELM](HELM/)
 
+- [Kubernetes Concept](Concept)
+- [Kubeadm Installation](KubeadmInstallation)
+- [Ansible Installation](AnsibleInstallation)
+ - [Kubespray Installation](AnsibleInstallation/KubesprayInstallation)
+ - [Azure Infra Installation with Ansible](AnsibleInstallation/KubesprayInstallation/azure-ansible)
+ - [ETCD](AnsibleInstallation/KubesprayInstallation/etcd)
+ - [Istio](AnsibleInstallation/KubesprayInstallation/istio)
+   - [MetalLB](AnsibleInstallation/KubesprayInstallation/istio/metallb.md)
+   - [Calico](AnsibleInstallation/KubesprayInstallation/istio/calico.md)
+  - [Persistant Volume](AnsibleInstallation/KubesprayInstallation/PersistantVolume)
+- [Hardway Installation](HardwayInstallation)
+- [Hardway Installation 2](HardwayInstallation2)
+- [Helm](Helm)
+- [Nginx-Ingress](Nginx-Ingress)
+- [Istio](Istio)
+- [Persistant Volume](PersistantVolume)
+- [Etcd](Etcd)
+- [Troubleshooting](Troubleshooting)
+- [References](References)
+- [Kubernetes Examples](KubernetesExamples)
+- [Windows Presentation](WindowsPresentation)
+- [Linux Presentation](LinuxPresentation)
 
 
 
