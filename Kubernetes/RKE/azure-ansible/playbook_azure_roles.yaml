@@ -1,0 +1,27 @@
+- name: all workers
+  become: true
+  hosts: vmworkers
+  roles:
+#    - allworkers
+    - rke
+
+ 
+- name: Install Nginx server
+  hosts: loadbalancer
+  become: true
+  roles:
+#    - nginx
+
+
+# - name: Install Windows tools
+#   hosts: vmwindows
+#   roles:
+#     - wintools
+
+# - name: Install Docker
+#   hosts: vmwindows
+#   roles:
+#     - winswarm
+
+
+

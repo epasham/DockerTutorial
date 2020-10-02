@@ -1,0 +1,35 @@
+- name: update packages
+  raw: sudo apt update
+  register: linux_apt_update
+
+- debug:
+    msg: "{{ linux_apt_update }}"
+
+
+- name: install nginx server
+  apt:
+    name: nginx
+    state: present
+
+- name: Stop service nginx, if started
+  service:
+    name: nginx
+    state: stopped
+
+- name: copy nginx conf
+  copy:
+    src: ./templates/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    backup: yes
+    force: yes
+    owner: root
+    group: root
+#    mode: 640
+
+
+- name: Start service nginx, if started
+  service:
+    name: nginx
+    state: started
+
+

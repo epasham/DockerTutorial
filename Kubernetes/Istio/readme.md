@@ -8,6 +8,10 @@ sistemde çalışabilmemiz için dynamic persistant volume ve metallb kurulu olm
 - [Metric Server](../Concepts/19_MetricServer.md)
 
 
+
+https://www.istioworkshop.io/
+
+
 ### [Istio Kurulumu](1_istio_kurulum.md)
 
 ### Tasks

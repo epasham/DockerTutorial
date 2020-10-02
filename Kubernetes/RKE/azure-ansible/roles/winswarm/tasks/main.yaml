@@ -1,0 +1,161 @@
+- name: Configure windows feature
+  win_shell: |
+    Install-WindowsFeature -Name Containers;
+    Uninstall-WindowsFeature Windows-Defender
+  args:
+    chdir: C:\
+    executable: powershell
+
+
+- name: Reboot and wait
+  win_reboot:
+    connect_timeout: 10
+
+
+- name: Checking if Docker Windows Service is already configured (to always ensure a fresh Windows Docker installation)
+  win_service:
+    name: docker
+  register: docker_service_info
+  ignore_errors: yes
+
+
+
+- name: Install OneGet Module
+  win_shell: |
+    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force;
+    Install-Module -Name DockerMsftProvider -Repository PSGallery -Force;
+    Install-Package -Name docker -ProviderName DockerMsftProvider  -Force -RequiredVersion 19.03;
+    Start-Service docker
+  args:
+    chdir: C:\
+    executable: powershell
+  register: install_docker_result
+  when: docker_service_info.exists == False
+
+- debug:
+    msg: "{{ install_docker_result }}"
+
+
+
+# - name: Install (or upgrade) Docker Compose via chocolatey
+#   win_chocolatey:
+#     name: docker-compose
+#     state: present
+#     version: 1.26.2
+
+
+
+
+- name: Init Swarm
+  vars:
+    w_host_name: "{{ swarm_advertise_addr.name }}"
+  win_shell: |
+      $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User");
+      $testswarm = docker info --format '{{ '{{' }}json .Swarm.LocalNodeState{{ '}}' }}'
+      if (!($testswarm -eq '"active"')) { docker swarm init --advertise-addr "{{ swarm_advertise_addr.ipaddr }}" } else { echo "Swarm zaten init yapılmış."}
+  args:
+    chdir: C:\
+    executable: powershell
+  register: init_swarm_result
+  when: inventory_hostname == w_host_name
+
+- debug:
+    msg: "{{ init_swarm_result }}"
+
+
+- name: Get Swarm Join Command
+  vars:
+    w_host_name: "{{ swarm_advertise_addr.name }}"
+  win_shell: |
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User");
+    docker swarm join-token worker -q
+  args:
+    chdir: C:\
+    executable: powershell
+  register: join_command_swarm_result
+  when: inventory_hostname == w_host_name
+
+- debug: var=hostvars.windows10.join_command_swarm_result.stdout
+
+
+- name: manager olmayan node larda key e ulaşılabiliyor mu?
+  vars:
+    w_host_name: "{{ swarm_advertise_addr.name }}"
+  win_shell: |
+    echo "{{ hostvars.windows10.join_command_swarm_result.stdout }}"
+  args:
+    chdir: C:\
+    executable: powershell
+  when: inventory_hostname != w_host_name
+
+
+
+
+
+- name: cluster da olayan makinları swarm cluster a ekle
+  vars:
+    w_host_name: "{{ swarm_advertise_addr.name }}"
+  win_shell: |
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User");
+    docker swarm join --token {{hostvars.windows10.join_command_swarm_result.stdout | trim }} {{swarm_advertise_addr.ipaddr}}:2377
+  args:
+    chdir: C:\
+    executable: powershell
+  when: inventory_hostname != w_host_name
+
+
+# daha sonra sistemdeki node lardan (N/2) +1 tanesini manager yapmak  gerekiyor.
+# https://docs.docker.com/engine/swarm/admin_guide/
+
+# swarm mode kendi ssl li,ni yöntebilir
+# https://docs.docker.com/engine/swarm/how-swarm-mode-works/pki/
+
+
+
+## inventory de dönerken hangi makinada iken register ettiysek değişkeni o makinada iken yazabiliriz.
+## bu nedenle when bölümü eklendi
+
+# - debug: var=join_command_swarm_result.stdout
+#   vars:
+#     w_host_name: "{{ swarm_advertise_addr.name }}"
+#   when: inventory_hostname == w_host_name
+
+
+
+  
+
+
+
+
+
+
+
+# # https://stackoverflow.com/questions/58232506/docker-swarm-module-join-token-parameter-for-ansible-not-working
+# - name: Init a new swarm with default parameters
+#   docker_swarm:
+#     state: present
+#     advertise_addr: "{{ swarm_advertise_addr }}"
+#   register: init_swarm_result
+#   when: inventory_hostname == swarm_advertise_addr
+# #  when: "ansible_default_ipv4.address == '{{ manager_ip }}'"
+
+
+# - name: Add nodes to swarm
+#   docker_swarm:
+#     state: join
+#     advertise_addr: "{{ swarm_advertise_addr }}"
+#     join_token: init_swarm_result.swarm_facts.JoinTokens.Worker
+#     remote_addrs: "{{ swarm_advertise_addr }}:2377"
+#   when: inventory_hostname != swarm_advertise_addr
+
+
+
+
+
+
+
+# https://hub.docker.com/editions/enterprise/docker-ee-server-windows#:~:text=Docker%20Engine%20%2D%20Enterprise%20is%20available,overlay%20networking%2C%20and%20Secret%20management.
+# https://docs.docker.com/desktop/enterprise/admin/install/windows/
+# https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server
+# https://4sysops.com/archives/install-docker-on-windows-server-2019/
+# https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/
