@@ -1,6 +1,28 @@
+### Docker distributed volume mifs minio
+
+
+ne yazıkki Docker Swarm için distributed shared plugin yok gibi. ancak paralı bulunabiliyor. şuan için iyi yöntem NFS kullanmak gibi görünüyor.
+
+
+Linux için NFS zaten belli ancak windows için smb kullanılabilir detaylar
+
+
+
+
+- https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/persistent-storage
+
+- https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/swarm-mode
+
+
+
+https://firepress.org/en/the-complete-guide-to-attach-a-docker-volume-with-minio-on-your-docker-swarm-cluster/
+
+ancak bu kullanım deprecated olmuş : https://github.com/minio/minfs
+
+
+
 
 ### STORAGE and VOLUME
-
 
 https://thenewstack.io/methods-dealing-container-storage/
 

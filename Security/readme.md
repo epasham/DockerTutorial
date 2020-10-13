@@ -112,6 +112,12 @@ $ ./docker-bech-security.sh
 
 
 
+iki bölümlük yazı dizisi bakılabilir. uygulamalaı
+
+- https://www.linkedin.com/pulse/konteyner-g%C3%BCvenli%C4%9Fi-b%C3%B6l%C3%BCm-i-asiye-yigit/
+
+- https://www.linkedin.com/pulse/konteyner-g%C3%BCvenli%C4%9Fi-b%C3%B6l%C3%BCm-2-asiye-yigit/
+
 
 
 ### Kaynaklar

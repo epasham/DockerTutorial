@@ -26,7 +26,11 @@ https://kubernetes.io/docs/setup/best-practices/multiple-zones/
 
 https://ansilh.com/
 
+5. Kore Dilinde Şekillerle Anlatılmış (Çok İyi)
 
+- https://kubetm.github.io/practice/
+
+- https://kubetm.github.io/plan/
 
 
 İç Kaynaklar

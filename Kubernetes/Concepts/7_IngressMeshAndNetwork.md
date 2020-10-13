@@ -1,13 +1,41 @@
 
-şu linklere mutlaka bakılmalı
+**şu linklere mutlaka bakılmalı**
+
+- https://success.mirantis.com/article/networking (kesin bakılmalı)
+
+- https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/ (çok iyi bakılmalı)
+
+- https://success.mirantis.com/article/ucp-service-discovery-swarm
 
 
-https://github.com/muratcabuk/DockerTutorial/tree/master/Kubernetes/AnsibleInstallation/KubesprayInstallation/istio
+- https://github.com/muratcabuk/DockerTutorial/tree/master/Kubernetes/AnsibleInstallation/KubesprayInstallation/istio
 
 
-https://oteemo.com/2019/09/19/kubernetes-networking-and-services-101/
+- https://oteemo.com/2019/09/19/kubernetes-networking-and-services-101/
 
-https://oteemo.com/2020/01/16/ingress-102-kubernetes-ingress-implementation-options/
+- https://oteemo.com/2020/01/16/ingress-102-kubernetes-ingress-implementation-options/
+
+- https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/
+
+### Life of a packet: Pod-to-Pod, across Nodes
+![pod-to-pod-different-nodes](files/pod-to-pod-different-nodes.gif)
+
+![Screenshot-2018-10-0641_1.png](files/Screenshot-2018-10-0641_1.png)
+
+
+### Life of a packet: Pod to Service
+![pod-to-service.gif](files/pod-to-service.gif)
+
+![Screenshot-2018-10-0641.png](files/Screenshot-2018-10-0641.png)
+
+### Life of a packet: LoadBalancer to Service
+
+![internet-to-service.gif](files/internet-to-service.gif)
+
+### Life of a packet: Node to Internet
+
+![pod-to-internet.gif](files/pod-to-internet.gif)
+
 
 
 ### Intro
@@ -23,7 +51,6 @@ https://medium.com/flant-com/comparing-ingress-controllers-for-kubernetes-9b3974
 https://docs.google.com/spreadsheets/d/1DnsHtdHbxjvHmxvlu7VhzWcWgLAn_Mc5L1WlhLDA__k/edit#gid=0
 
 
-
 ISTIO en altta
 
 
@@ -33,6 +60,10 @@ ISTIO en altta
 - Gateway
 - Load Balancing
 
+
+### Kube-Proxy
+
+![networking-overview_load-balancer.png](files/networking-overview_load-balancer.png)
 
 #### Routing 
 

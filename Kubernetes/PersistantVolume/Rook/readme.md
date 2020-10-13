@@ -7,7 +7,7 @@ Aslşında farklı storage sistemlerini kubernetes e soyutlamak için kullanıl�
 
 
 
-
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ceph-cluster-within-kubernetes-using-rook
 
 
 
@@ -23,6 +23,10 @@ Aslşında farklı storage sistemlerini kubernetes e soyutlamak için kullanıl�
 - https://github.com/rook/rook/tree/master/Documentation
 
 ceph ayrıca kubernets e rookdan bağımsız olark container olarak da kurulabilir. : https://github.com/ceph/ceph-container
+
+
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ceph-cluster-within-kubernetes-using-rook
 
 
 

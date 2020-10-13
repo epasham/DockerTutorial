@@ -4,6 +4,24 @@ Overlay network limitations
 
 You should create overlay networks with /24 blocks (the default), which limits you to 256 IP addresses, when you create networks using the default VIP-based endpoint-mode. This recommendation addresses limitations with swarm mode. If you need more than 256 IP addresses, do not increase the IP block size. You can either use dnsrr endpoint mode with an external load balancer, or use multiple smaller overlay networks. See Configure service discovery for more information about different endpoint modes.
 
+
+ NAT (Network Address Translation), aynı ağ içerisinde bulunan birden fazla cihazın aynı public IP’yi kullanarak internete erişebilmesini sağlayan yöntemdir.
+
+ 
+4 adet NAT türü var
+
+https://www.youtube.com/watch?v=wg8Hosr20yw
+
+- Source NAT : dışarıdan gelen isteklerin direkt olarkqa bir IP ye yönlendirilmesidir. yani dışarıdan gelen belli ip lerin içeride belli ip adreslerine yönşlendirilmesidir. 
+
+Many Kubernetes network implementations use overlay networks. Typically for these deployments, when a pod initiates a connection to an IP address outside of the cluster, the node hosting the pod will **SNAT (Source Network Address Translation)** map the source address of the packet from the pod IP to the node IP
+
+- Dynamic NAT: içeriden yapılan bir isteğin dışarıdaki noktaya giderken örneğin router ın internla ip yi dışarıya public bir ip ile açmasıdır. ancka burada şuna dikkat tek public ip yok. her .isteklde inernel ip dışarı farklı bir publik ip alıyor. buna aynı zamanda ip masquearading de deniyor. iç ip saldırılara karşı korunmuş oluyor. 
+- PAT (Port Addres Transtlation): içeriden  dışarıya iç ip adresi tek bir public ip ile farklı portlarla talep yapar. router nat table kullanılır.
+- Port Fortwarding: dışarıdan içeriye gelen trafik portlara göre farklı iç sunuculara yönlendirilir.
+ 
+ 
+
 - https://docs.docker.com/engine/reference/commandline/network_create/#overlay-network-limitations
 
 - https://docs.docker.com/engine/reference/run/#network-settings
@@ -13,13 +31,19 @@ Dışarıdan erişim ve test için yöntemler
 - supergrok
 - SSH tünelleme
 
-https://medium.com/devopsturkiye/docker-network-%C3%BCzerine-genel-bak%C4%B1%C5%9F-1afc830ef648
+**Faydalı Linker**
 
-https://oktayegi.wordpress.com/2018/10/31/ubuntu-uzerinde-docker-5-network-ve-nginx-load-balancer-ornegi/
+- https://medium.com/devopsturkiye/docker-network-%C3%BCzerine-genel-bak%C4%B1%C5%9F-1afc830ef648
+- https://oktayegi.wordpress.com/2018/10/31/ubuntu-uzerinde-docker-5-network-ve-nginx-load-balancer-ornegi/
+- https://www.edureka.co/blog/docker-networking/
+- https://www.docker.com/blog/docker-networking-design-philosophy/
+- https://www.flockport.com/guides/overlay-networks
 
-https://www.edureka.co/blog/docker-networking/
+- https://success.mirantis.com/article/networking (kesin bakılmalı)
 
-https://www.docker.com/blog/docker-networking-design-philosophy/
+- https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/ (çok iyi bakılmalı)
+
+- https://success.mirantis.com/article/ucp-service-discovery-swarm
 
 ## Docker Network Drivers
 
