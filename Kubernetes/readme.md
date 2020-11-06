@@ -2,7 +2,7 @@ Dış Kaynaklar
 
 1. References SAyfası
 
-https://kubernetes.io/docs/reference/
+- https://kubernetes.io/docs/reference/
 
 
 bu sayfada tüm CLI ve API  referanslarına erişmek münmkün.
@@ -19,12 +19,12 @@ Kurulum. konfigurasyon, Job yönetimi, güvenlik, monitoring, loglama, networkin
 
 öcellikle Best Practice ler sayfası çok faydalı
 
-https://kubernetes.io/docs/setup/best-practices/multiple-zones/
+- https://kubernetes.io/docs/setup/best-practices/multiple-zones/
 
 
 4. Kapsamlı Kubernetes Sayfası
 
-https://ansilh.com/
+- https://ansilh.com/
 
 5. Kore Dilinde Şekillerle Anlatılmış (Çok İyi)
 
@@ -32,6 +32,10 @@ https://ansilh.com/
 
 - https://kubetm.github.io/plan/
 
+
+6. troubleshooting
+
+- https://hub.docker.com/r/nicolaka/netshoot
 
 İç Kaynaklar
 

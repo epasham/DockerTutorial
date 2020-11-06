@@ -10,9 +10,7 @@ RKE ayrıca sitio da kurabiliyor bu durumda nginx-ingress yerine istio  ingress-
 
 bu bize 4 adet linux makina ve 3 Adet Windows makina vermiş olacak. Windows makinalara Swarm kurulmuş olacak. Ayrıca RKE için gerekli ön gereksinimlerin hepsini de kuruyor olacak.
 
-- ön gereksinimler : https://rancher.com/docs/rke/latest/en/os/
-
-yukarıdaki ansible ön gereksişnimleri de kuruyor olacak.
+- Ön gereksinimler : https://rancher.com/docs/rke/latest/en/os/
 
 Biz bu kurulumu yaparken RKE 1.1.9 versiyonu yayındaydı.
 
@@ -21,11 +19,9 @@ Biz bu kurulumu yaparken RKE 1.1.9 versiyonu yayındaydı.
 https://rancher.com/docs/rke/latest/en/os/#ports
 
 
+Linux10 makinası bizim kurulum makinamız olacak.Aynı zamanda Load Balancer olacak. Bu makina gelen istekleri master sunuculara ve worker sunuculara dağıtıyor olacak.
+örnek config dosyasını files klasöründe bulabilirsiniz.
 
-Linux10 makinası bizim kurulum makinamız olacak.Aynı zamanda Load Balancer olacak. Bu makina gelen istekleri worker sunucular dağıtıyor olacak.
-
-- [RKE kurulumnda Nginx load balancer görevi resmi makale](https://rancher.com/docs/rancher/v2.x/en/installation/k8s-install/create-nodes-lb/#2-set-up-the-load-balancer)
-- [Rancher sayfasında Nginx LB kurulumu](https://rancher.com/docs/rancher/v2.x/en/installation/options/nginx/)
 
 ### Kurulum
 
@@ -43,7 +39,7 @@ Linux10 makinası bizim kurulum makinamız olacak.Aynı zamanda Load Balancer ol
 
     1. rke cli kullanılarak sorulan sorulara cevap verip otomatik oluşturma seçeneği alttaki komutu kullannız.
 
-    ```
+    ```shell
     $ rke config --name cluster.yml
     ```
     2. boş bir dosya oluşturmak için
@@ -51,6 +47,9 @@ Linux10 makinası bizim kurulum makinamız olacak.Aynı zamanda Load Balancer ol
     ```
     $ rke config --empty --name cluster.yml
     ```
+
+
+
     3. Manuel oluşturlup elle doldurulabilir.
 
     bunu için [şu linke](https://rancher.com/docs/rke/latest/en/example-yamls/) de bakılabilir.

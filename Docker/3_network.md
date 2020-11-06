@@ -1,14 +1,22 @@
-şu açıklamaya dikkat et
+**şu açıklamaya dikkat et**
 
-Overlay network limitations
+- Overlay network limitations:
 
 You should create overlay networks with /24 blocks (the default), which limits you to 256 IP addresses, when you create networks using the default VIP-based endpoint-mode. This recommendation addresses limitations with swarm mode. If you need more than 256 IP addresses, do not increase the IP block size. You can either use dnsrr endpoint mode with an external load balancer, or use multiple smaller overlay networks. See Configure service discovery for more information about different endpoint modes.
 
 
- NAT (Network Address Translation), aynı ağ içerisinde bulunan birden fazla cihazın aynı public IP’yi kullanarak internete erişebilmesini sağlayan yöntemdir.
+-NAT (Network Address Translation), aynı ağ içerisinde bulunan birden fazla cihazın aynı public IP’yi kullanarak internete erişebilmesini sağlayan yöntemdir.
 
  
-4 adet NAT türü var
+https://medium.com/@_matthanley/tunnelling-inter-host-networking-through-a-docker-swarm-overlay-network-18f022cd1282 
+
+
+**Network konusunda en detaylı kaynak**
+- https://blog.revolve.team/2017/08/20/deep-dive-3-into-docker-overlay-networks-part-3/
+
+ 
+ 
+**4 adet NAT türü var**
 
 https://www.youtube.com/watch?v=wg8Hosr20yw
 

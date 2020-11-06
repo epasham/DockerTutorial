@@ -1,23 +1,6 @@
-### Docker distributed volume mifs minio
 
+https://thenewstack.io/methods-dealing-container-storage/ (konuyu anşama adına güzel anlatım olmuş)
 
-ne yazıkki Docker Swarm için distributed shared plugin yok gibi. ancak paralı bulunabiliyor. şuan için iyi yöntem NFS kullanmak gibi görünüyor.
-
-
-Linux için NFS zaten belli ancak windows için smb kullanılabilir detaylar
-
-
-
-
-- https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/persistent-storage
-
-- https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/swarm-mode
-
-
-
-https://firepress.org/en/the-complete-guide-to-attach-a-docker-volume-with-minio-on-your-docker-swarm-cluster/
-
-ancak bu kullanım deprecated olmuş : https://github.com/minio/minfs
 
 
 
@@ -329,6 +312,80 @@ detaylar için sayfa: https://docs.docker.com/storage/storagedriver/select-stora
 ## Distributed Storages
 
 
+[Storage Systems - Notlarım için bakınız](https://github.com/muratcabuk/StorageSystems)
+
+Windows için 3 yöntem var aslında
+
+1. Shared bir folder ı symbolic link ile C gibi bir diske bağlamak (aslında burada çalışan samba ). https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/
+2. yada linux samba server üzerinde kurulum yapmak. 
+
+ - https://docs.microsoft.com/en-us/windows-server/storage/file-server/troubleshoot/detect-enable-and-disable-smbv1-v2-v3 (bu sayfa önemli çünki windows samba v1 i artık kaldırıyor. v2 ve v3 için powershell ile kurulum yapılabiliyor.)
+ - https://askubuntu.com/questions/1009455/smb-2-or-3-with-samba-version-4-3-11
+    
+örnek komutlar V1 windows üzerinde aslında version değiştirme komutları
+```
+# detect
+Get-WindowsOptionalFeature -Online -FeatureName smb1protocol
+# disable
+Disable-WindowsOptionalFeature -Online -FeatureName smb1protocol
+# enable
+Enable-WindowsOptionalFeature -Online -FeatureName smb1protocol
+
+```
+
+örnek kullanım v2/v3
+
+```
+Get-SmbServerConfiguration | Select EnableSMB2Protocol
+Set-SmbServerConfiguration –EnableSMB2Protocol $false
+Set-SmbServerConfiguration –EnableSMB2Protocol $true
+
+```
+
+
+
+paylaştırılmış bir folder ı samba client ile windows a driver olarka bağlamak için lattaki komutu kullanınız. burada dikkat  edilmesi gereken globalmepping keyword ü. bu sayede container lar başka bişr driver a gerek duymadan host üzerind eonara paylaştırılmış alan direk yazabilcekler.
+
+problem yaşanması durumunda git issue : https://github.com/moby/moby/issues/37863
+
+```
+New-SmbGlobalMapping -RemotePath \\node3\SharedFolder  -LocalPath L: -Persistent $true -Credential (Get-Credential) -RequirePrivacy $true
+``` 
+
+normal de komut içindeki -RequirePrivacy $true flag i microısoft resmi sayfasında yoktu gir issue linkinde buldum.
+
+diğer teknikler problem yaşanırsa 
+
+```
+New-SmbGlobalMapping -RemotePath "\\10.0.0.4\data" -Credential $credentialObject -LocalPath Z: -FullAccess @( "NT AUTHORITY\SYSTEM", "NT AUTHORITY\NetworkService" ) -Persistent $true -RequirePrivacy $true
+
+```
+veya symbloic link çözümü
+
+```
+1. Create the New-SmbGlobalMapping (as z:)
+2. Create a new folder on a local hard drive to "host" the share as a symbolic link (c:\hostfolder)
+3. In powershell, use New-Item -ItemType SymbolicLink to from the z:\ to c:\hostfolder as ZDrive
+4. Mount c:\hostfolder\ZDrive as volume in docker.
+```
+
+sorun çözümü için diğer bir link : access denied için : https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/access-denied-access-smb-file-share
+
+
+[windows sistem hatalarının çözümü için araçlar- resmi sayfa - file and disk utilities, nettwork utilities, security etc](https://docs.microsoft.com/en-us/sysinternals/)
+
+
+ICACLS aracı kullanılarak yetki vermek
+```
+
+ICACLS h:\folder /grant domain\user:(RC,RD,REA,RA,X,S)
+```
+
+
+
+3. Distributed çalışan bir storage sistemini (Ceph veya Gluster) kullanarak shared file sistem oluşturup yine samba ile bağlamak. Örneğin Ceph de Ceph File gibi Altta anlatılıyor.
+
+
 https://medium.com/commencis/docker-serisi-3-docker-engine-bolum-2-a7c6c5f50851#295b
 
 
@@ -345,5 +402,27 @@ https://github.com/muratcabuk/Notes/tree/master/StorageSystems
 
 windows için volume örneği : https://4sysops.com/archives/introduction-to-docker-bind-mounts-and-volumes/
 
+
+
+### Docker distributed volume mifs minio
+
+
+ne yazıkki Docker Swarm için distributed shared plugin yok gibi. ancak paralı bulunabiliyor. şuan için iyi yöntem NFS kullanmak gibi görünüyor.
+
+
+Linux için NFS zaten belli ancak windows için smb kullanılabilir detaylar
+
+
+
+
+- https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/persistent-storage
+
+- https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/swarm-mode
+
+
+
+https://firepress.org/en/the-complete-guide-to-attach-a-docker-volume-with-minio-on-your-docker-swarm-cluster/
+
+ancak bu kullanım deprecated olmuş : https://github.com/minio/minfs
 
 
